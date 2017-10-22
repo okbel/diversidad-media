@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './Header.css'
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 
 const menuItems = [
   'Peliculas',
@@ -61,7 +61,11 @@ class Header extends React.Component {
         <ul className={s.menuList}>
           {menuItems.map((item, i) => 
             <li key={i} className={s.menuItem}>
-              <Link to={item.toLowerCase()}>{item}</Link>
+              <NavLink to={`/${item.toLowerCase()}`}
+                className={s.menuItemLink}
+                activeClassName={s.selected}>
+                {item}
+              </NavLink>
             </li>
           )}
         </ul>

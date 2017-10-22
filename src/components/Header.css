@@ -21,36 +21,39 @@
 
 .menuItem {
   display: inline-block;
+}
+
+.menuItemLink {
+  display: inline-block;
   margin: 0 20px;
   border-bottom: 1px solid transparent;
   transition: border-bottom 0.2s ease-in-out;
 }
 
-.menuItem:hover {
+.menuItemLink:hover {
   cursor: pointer;
 }
 
-.menuItem:nth-child(1):hover, .menuItem.selected {
+.menuItem:nth-child(1) .menuItemLink:hover, .menuItem:nth-child(1) .menuItemLink.selected {
   border-bottom: 1px solid #CB4AB0;
 }
 
-.menuItem:nth-child(2):hover, .menuItem.selected {
+.menuItem:nth-child(2) .menuItemLink:hover, .menuItem:nth-child(2) .menuItemLink.selected {
   border-bottom: 1px solid #49B1DE;
 }
 
-
-.menuItem:nth-child(3):hover, .menuItem.selected {
+.menuItem:nth-child(3) .menuItemLink:hover, .menuItem:nth-child(3) .menuItemLink.selected {
   border-bottom: 1px solid #61C482;
 }
 
-.menuItem:nth-child(4):hover, .menuItem.selected  {
+.menuItem:nth-child(4) .menuItemLink:hover, .menuItem:nth-child(4) .menuItemLink.selected  {
   border-bottom: 1px solid #F5C15F;
 }
 
-.menuItem:nth-child(5):hover, .menuItem.selected {
-  border-bottom: 1px solid #EB7835;
+.menuItem:nth-child(5) .menuItemLink:hover, .menuItem:nth-child(5) .menuItemLink.selected {
+  border-bottom: 1px solid #EB7835; 
 }
 
-.menuItem:nth-child(6):hover, .menuItem.selected {
+.menuItem:nth-child(6) .menuItemLink:hover, .menuItem:nth-child(6) .menuItemLink.selected {
   border-bottom: 1px solid #EB5242;
 }
