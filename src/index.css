@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+*{box-sizing:border-box}
+blockquote,body,button,dd,dl,figure,h1,h2,h3,h4,h5,h6,ol,p,pre,ul{margin:0;padding:0}
+ol,ul{list-style:none}a{text-decoration:none}
+button,select{border:none;outline:none;background:none;font-family:inherit}
+a,button,input,select,textarea{-webkit-tap-highlight-color:transparent}
+:root{overflow-x:hidden;height:100%}
+
+body {
+  min-height: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "pnum";
+  font-variant-numeric: proportional-nums;
+  color: #0C0E17;
+  font-size: 14px;
+  background-color: #fbfbfb;
+  line-height: 24px;
+}
+
+a {
+  color: #0C0E17;
+}
