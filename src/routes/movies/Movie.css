@@ -34,10 +34,11 @@
 
 .movieContainer {
   display: inline-block;
+  margin-left: -1px;
   margin-right: 25px;
   margin-bottom: 25px;
 }
 
-.movieContainer:nth-child(6n){
-  margin-right: 0;
+a.movieContainer:nth-child(6n){
+  margin-right: 0px;
 }

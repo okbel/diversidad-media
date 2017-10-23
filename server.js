@@ -3,9 +3,11 @@ const google = require('googleapis');
 const bodyParser = require('body-parser');
 const axios = require('axios');
 
-const credentials = require('./credentials.json');
+const credentials = require('./creds.js');
 
 const app = express();
+
+app.use(express.static('build'));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -44,7 +46,7 @@ const request = axios.create({
   baseURL: 'https://api.themoviedb.org'
 });
 
-request.defaults.headers.common['Authorization'] = `Bearer ${credentials.access_token}`;
+request.defaults.headers.common['Authorization'] = `Bearer ${credentials.tmdb.access_token}`;
 request.defaults.headers.common['Content-Type'] = `application/json;charset=utf-8`;
 
 app.get('/update', async (req, res, next) => {
