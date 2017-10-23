@@ -17,7 +17,7 @@ class Header extends React.Component {
       <header className={s.header}>
         <h1 className={s.logo}>
           <svg width="33px" height="32px" viewBox="219 50 33 32" version="1.1" xmlns="http://www.w3.org/2000/svg"> 
-            <g id="Logo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(220.000000, 50.000000)">
+            <g id="Logo" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd" transform="translate(220.000000, 50.000000)">
                 <g id="Group-2" transform="translate(5.000000, 0.000000)">
                     <g id="LOGO">
                         <rect id="Rectangle" fill="#61C482" x="0" y="16" width="9" height="5.33333333"></rect>

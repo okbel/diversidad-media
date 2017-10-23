@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 
 import Movies from './routes/movies/Movies';
+import DescriptionMovie from './routes/movies/DescriptionMovie';
 import Shows from './routes/shows/Shows';
 import Books from './routes/books/Books';
 import Music from './routes/music/Music';
@@ -20,7 +21,8 @@ class App extends React.Component {
           <Header />
           <div className={s.content}>
             <Route exact path="/" component={Movies}/>
-            <Route path="/peliculas" component={Movies}/>
+            <Route exact path="/peliculas" component={Movies}/>
+            <Route path="/peliculas/:id" component={DescriptionMovie}/>
             <Route path="/series" component={Shows}/>
             <Route path="/libros" component={Books}/>
             <Route path="/musica" component={Music}/>

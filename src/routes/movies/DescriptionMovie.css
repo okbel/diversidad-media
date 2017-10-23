@@ -1,0 +1,35 @@
+.title {
+  margin-bottom: 20px;
+}
+
+.container {
+  display: flex;
+  position: relative;
+}
+
+.container > .side {
+  flex: 0;
+  padding: 30px;
+}
+
+.container .description {
+  flex: 1;
+  padding: 30px;
+  padding-left: 0px; 
+}
+
+.backdrop {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  -webkit-background-size: cover;
+  background-size: cover;
+  opacity: 0.2;
+  z-index: -1;
+  border-radius: 3px;
+}
+
+.poster {
+  height: 100%;
+  border-radius: 3px;
+}
