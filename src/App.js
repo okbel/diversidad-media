@@ -10,6 +10,7 @@ import Books from './routes/books/Books';
 import Music from './routes/music/Music';
 import Sites from './routes/sites/Sites';
 import Other from './routes/other/Other';
+import Home from './routes/home/Home';
 
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
@@ -28,6 +29,7 @@ class App extends React.Component {
             <Route path="/musica" component={Music}/>
             <Route path="/sitios" component={Sites}/>
             <Route path="/otros" component={Other}/>
+            <Route exact path="/sobre" component={Home}/>
           </div>
           <Footer />
         </div>

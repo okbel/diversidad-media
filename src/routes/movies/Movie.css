@@ -1,3 +1,5 @@
+@custom-media --table-viewport (max-width: 1024px);
+
 .movie {
   background-color: #65DBC1;
   width: 146px;
@@ -37,8 +39,25 @@
   margin-left: -1px;
   margin-right: 25px;
   margin-bottom: 25px;
+  max-width: 146px;
 }
 
 a.movieContainer:nth-child(6n){
   margin-right: 0px;
+}
+
+@media (--table-viewport) {
+  a.movieContainer {
+    margin-right: 25px;
+  }
+
+  a.movieContainer:nth-child(6n){
+    margin-right: 0px;
+  }
+}
+
+.movieName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

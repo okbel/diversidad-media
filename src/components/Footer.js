@@ -5,8 +5,8 @@ class Footer extends React.Component {
   render() {
     return (
       <footer className={s.footer}>
-        Creado por <a className={s.creator}>@okbel</a> y colaboradores. 
-        <small className={s.message}> Mandame un DM si encontrás algún problema o querés proponer un feature!</small>
+        Creado con mucho <a className={s.creator}>amor</a>. 
+        <small className={s.message}> Mandame un DM a <a className={s.creator}>@okbel</a> si encontrás algún problema o querés proponer un feature!</small>
       </footer>
     );
   }

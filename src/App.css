@@ -1,3 +1,5 @@
+@custom-media --table-viewport (max-width: 1024px);
+
 .container {
   max-width: 1024px;
   margin: 0 auto;
@@ -5,6 +7,12 @@
   min-height: 100vh;
   flex-direction: column;
   letter-spacing: 0.1px;
+}
+
+@media (--table-viewport) {
+  .container {
+    padding: 0 40px;
+  }
 }
 
 .content {

@@ -9,6 +9,7 @@ const menuItems = [
   'Musica',
   'Sitios',
   'Otros',
+  'Sobre',
 ];
 
 class Header extends React.Component {
