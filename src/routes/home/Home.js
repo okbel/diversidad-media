@@ -38,13 +38,13 @@ class Home extends React.Component {
 
         <h3 className={s.title}>Historia</h3>
 
-        <blockquote class="twitter-tweet" data-lang="en"><p lang="es" dir="ltr">Te interesa la diversidad? Empezá a diversificar lo que consumís. Mirá algún documental gay en Netflix, por ejemplo. Empezá por algo.</p>&mdash; Belén Curcio (@okbel) <a href="https://twitter.com/okbel/status/921114219025661953?ref_src=twsrc%5Etfw">October 19, 2017</a></blockquote>
+        <blockquote className="twitter-tweet" data-lang="en"><p lang="es" dir="ltr">Te interesa la diversidad? Empezá a diversificar lo que consumís. Mirá algún documental gay en Netflix, por ejemplo. Empezá por algo.</p>&mdash; Belén Curcio (@okbel) <a href="https://twitter.com/okbel/status/921114219025661953?ref_src=twsrc%5Etfw">October 19, 2017</a></blockquote>
 
 
-        <blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="es" dir="ltr">Esta es la lista colaborativa de Diversidad Media - Peliculas, Series, Sitios, etc. <a href="https://t.co/zgBX4Vh1Kx">https://t.co/zgBX4Vh1Kx</a></p>&mdash; Belén Curcio (@okbel) <a href="https://twitter.com/okbel/status/921207922339741696?ref_src=twsrc%5Etfw">October 20, 2017</a></blockquote>
+        <blockquote className="twitter-tweet" data-conversation="none" data-lang="en"><p lang="es" dir="ltr">Esta es la lista colaborativa de Diversidad Media - Peliculas, Series, Sitios, etc. <a href="https://t.co/zgBX4Vh1Kx">https://t.co/zgBX4Vh1Kx</a></p>&mdash; Belén Curcio (@okbel) <a href="https://twitter.com/okbel/status/921207922339741696?ref_src=twsrc%5Etfw">October 20, 2017</a></blockquote>
 
 
-        <blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="es" dir="ltr">Y si querés agregar cosas a la lista <a href="https://t.co/z6U6PKh3hS">https://t.co/z6U6PKh3hS</a> 😍😍😍😍😍</p>&mdash; Belén Curcio (@okbel) <a href="https://twitter.com/okbel/status/921222205052043264?ref_src=twsrc%5Etfw">October 20, 2017</a></blockquote>
+        <blockquote className="twitter-tweet" data-conversation="none" data-lang="en"><p lang="es" dir="ltr">Y si querés agregar cosas a la lista <a href="https://t.co/z6U6PKh3hS">https://t.co/z6U6PKh3hS</a> 😍😍😍😍😍</p>&mdash; Belén Curcio (@okbel) <a href="https://twitter.com/okbel/status/921222205052043264?ref_src=twsrc%5Etfw">October 20, 2017</a></blockquote>
 
 
       </div>
