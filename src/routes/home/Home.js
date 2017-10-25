@@ -26,13 +26,13 @@ class Home extends React.Component {
 
         <ul className={s.list}>
           <li>
-            Belén Curcio @okbel
+            Belén Curcio <a className={s.link} href="https://twitter.com/okbel">@okbel</a>
           </li>
           <li>
-            Fernanda Giustozzi @ferferguson
+            Fernanda Giustozzi <a className={s.link} href="https://twitter.com/ferferguson">@ferferguson</a>
           </li>
           <li>
-            Daniela Herrera @ohdaeni
+            Daniela Herrera <a className={s.link} href="https://twitter.com/ohdaeni">@ohdaeni</a>
           </li>
         </ul>
 
