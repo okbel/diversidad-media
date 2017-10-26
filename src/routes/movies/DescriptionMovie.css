@@ -5,17 +5,19 @@
 .container {
   display: flex;
   position: relative;
+  flex-direction: column;
 }
+
 
 .container > .side {
   flex: 0;
   padding: 30px;
+  overflow: hidden;
 }
 
 .container .description {
   flex: 1;
   padding: 30px;
-  padding-left: 0px; 
 }
 
 .backdrop {
@@ -30,6 +32,22 @@
 }
 
 .poster {
-  height: 100%;
   border-radius: 3px;
+  width: 100%;
+}
+
+@media (--phone) {
+  .container {
+    flex-direction: row;
+  }
+  .container > .side {
+    overflow: inherit;
+  }
+  .container .description {
+    padding-left: 0px; 
+  }
+  .poster {
+    width: auto;
+    height: 100%;
+  }
 }
