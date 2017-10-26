@@ -185,6 +185,7 @@ module.exports = {
                         '--large-desktop': '(min-width: 1200px)',
                       },
                     }),
+                    require('precss'),
                     autoprefixer({
                       browsers: [
                         '>1%',
