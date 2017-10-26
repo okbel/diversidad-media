@@ -1,0 +1,35 @@
+.container {
+  text-align: center;
+}
+
+.page, .previous, .next, .break {
+  display: inline-block;
+  list-style: none;
+  margin-right: 5px;
+}
+
+.pageLink, .previousLink, .nextLink {
+  display: inline-block;
+  color: #696969;
+  cursor: pointer;
+  height: 30px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 30px;
+  width: 30px;
+  user-select: none;
+  outline: none;
+}
+
+.previousLink, .nextLink {
+  font-size: 1.8em;
+}
+
+.active {
+  background-color: #d4d4d4;
+  border-radius: 3px;
+  a {
+    color: #423f3f;
+    font-weight: bold;
+  }
+}

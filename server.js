@@ -69,9 +69,9 @@ app.get('/update', async (req, res, next) => {
   }
 })
 
-app.get('/movies', async (req, res, next) => {
+app.get('/movies', async ({query: {page}}, res, next) => {
   try {
-    const {data} = await request.get(`/4/list/${credentials.tmdb.list}?api_key=${credentials.tmdb.api_key}`);
+    const {data} = await request.get(`/4/list/${credentials.tmdb.list}?api_key=${credentials.tmdb.api_key}&page=${page}`);
     res.send(data);
   } catch (err) {
     next(err);
