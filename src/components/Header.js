@@ -1,6 +1,7 @@
 import React from 'react';
-import s from './Header.css'
-import {NavLink} from 'react-router-dom'
+import s from './Header.css';
+import {NavLink} from 'react-router-dom';
+import cn from 'classnames';
 
 const menuItems = [
   'Peliculas',
@@ -13,7 +14,15 @@ const menuItems = [
 ];
 
 class Header extends React.Component {
+  state = {showMenu: false}
+  toggleMenu = () => {
+    this.setState(({showMenu}) => ({showMenu: !showMenu}))
+  }
+  closeMenu = () => {
+    this.setState(({showMenu}) => ({showMenu: false}))
+  }
   render() {
+    const {showMenu} = this.state;
     return (
       <header className={s.header}>
         <h1 className={s.logo}>
@@ -59,10 +68,14 @@ class Header extends React.Component {
         </svg>
       </h1>
       <nav className={s.menu}>
-        <ul className={s.menuList}>
+        <span className={s.menuIcon} onClick={this.toggleMenu}>
+          <img className={s.icon} src="/icons/ic_menu_black_24px.svg" alt="Menu Icon"/>
+        </span>
+        <ul className={cn(s.menuList, {[s.showMenu]: showMenu})}>
           {menuItems.map((item, i) => 
-            <li key={i} className={s.menuItem}>
-              <NavLink to={`/${item.toLowerCase()}`}
+            <li key={i} className={s.menuItem} onClick={this.closeMenu}>
+              <NavLink
+                to={`/${item.toLowerCase()}`}
                 className={s.menuItemLink}
                 activeClassName={s.selected}>
                 {item}

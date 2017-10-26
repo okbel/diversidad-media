@@ -10,17 +10,35 @@
 .header .menu {
   flex: 1;
   margin-left: 50px;
+  text-align: right;
 }
 
 .menuList {
+  display: none;
   list-style: none;
   padding: 0;
   margin: 0;
   line-height: 33px;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  background-color: white; 
 }
 
 .menuItem {
-  display: inline-block;
+  display: block;
+  text-align: center;
+  padding: 20px;
+  font-size: 1.4em;
+}
+
+.menuItemLink:last-child {
+  margin-right: 0;
 }
 
 .menuItemLink {
@@ -28,6 +46,41 @@
   margin: 0 20px;
   border-bottom: 1px solid transparent;
   transition: border-bottom 0.2s ease-in-out;
+}
+
+.menuIcon {
+  display: inline-block;
+  background: white;
+  padding: 2px;
+  border: solid 1px #989494;
+  border-radius: 3px;
+}
+
+.showMenu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 50px 0;
+} 
+
+@media (--desktop) {
+  .menuIcon {
+    display: none;
+  }
+  .menuList {
+    display: block;
+    position: static;
+    background-color: transparent;
+  }
+  .menuItem {
+    display: inline-block;
+    padding: 0px;
+    font-size: 1em;
+  }
+}
+
+.icon {
+  vertical-align: middle;
 }
 
 .menuItemLink:hover {
@@ -56,4 +109,8 @@
 
 .menuItem:nth-child(6) .menuItemLink:hover, .menuItem:nth-child(6) .menuItemLink.selected {
   border-bottom: 1px solid #EB5242;
+}
+
+.menuItem:nth-child(7) .menuItemLink:hover, .menuItem:nth-child(7) .menuItemLink.selected {
+  border-bottom: 1px solid violet;
 }
