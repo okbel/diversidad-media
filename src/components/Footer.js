@@ -6,7 +6,7 @@ class Footer extends React.Component {
   render() {
     return (
       <footer className={s.footer}>
-        Creado con mucho <Link className={s.link} to="/sobre">amor</Link>. 
+        Creado con mucho <Link className={s.link} to="/about">amor</Link>. 
         <small className={s.message}> Mandame un DM a <a className={s.link} href="https://twitter.com/okbel">@okbel</a> si encontrás algún problema o querés proponer un feature!</small>
       </footer>
     );
