@@ -31,4 +31,7 @@ TMDB_MOVIES_LIST=36681
 TMDB_SHOWS_LIST=37347
 ```
 
+## Active Contributors
+Belén Curcio @okbel - Frontend and Backend Development - Content
+
 www.diversidadmedia.com. Diversidad Media 2017
