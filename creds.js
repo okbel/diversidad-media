@@ -4,6 +4,9 @@ module.exports = {
   "tmdb": {
     "api_key": process.env.TMDB_API_KEY,
     "access_token": process.env.TMDB_ACCESS_TOKEN,
-    "list": "36681"
+    "lists": {
+      "movies": process.env.TMDB_MOVIES_LIST,
+      "shows": process.env.TMDB_SHOWS_LIST,
+    }
   }
 }

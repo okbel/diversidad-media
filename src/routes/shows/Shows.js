@@ -2,7 +2,7 @@ import React from 'react';
 import s from './Shows.css';
 import Resources from '../../modules/resource/Resources';
 
-class Movies extends React.Component {
+class Shows extends React.Component {
   render() {
     return (
       <div>
@@ -17,4 +17,4 @@ class Movies extends React.Component {
   }
 }
 
-export default Movies;
+export default Shows;

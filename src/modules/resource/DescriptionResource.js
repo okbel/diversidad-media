@@ -1,6 +1,6 @@
 import React from 'react';
-import s from './DescriptionMovie.css';
-import {Link} from 'react-router-dom'
+import s from './DescriptionResource.css';
+import {Link} from 'react-router-dom' 
 import axios from 'axios';
 
 class DescriptionResource extends React.Component {
@@ -10,7 +10,7 @@ class DescriptionResource extends React.Component {
 
   async componentWillMount() {
     const id = this.props.match.params.id;
-    const {data:resource} = await axios.get(`/${this.props.resource}/${id}`);
+    const {data:resource} = await axios.get(`/${this.props.type}/${id}`);
     this.setState({resource});
   }
 
@@ -20,37 +20,48 @@ class DescriptionResource extends React.Component {
     })
   }
 
-  render() {
-    const {resource} = this.props;
-    const {movie} = this.state;
+  getParent(type) {
+    switch(type) {
+    case 'show':
+      return 'Series';
+    case 'movie':
+      return 'Películas';
+    default:
+      return 'Películas';
+    }
+  }
 
-    if (!movie) {
+  render() {
+    const {type} = this.props;
+    const {resource} = this.state;
+
+    if (!resource) {
       return null;
 
     }
 
     return (
       <div>
-        <h2 className={s.title}><Link to={`/${resource}`}>Peliculas</Link> › {movie.title}</h2>
+        <h2 className={s.title}><Link to={`/${type}s`}>Peliculas</Link> › {resource.title}</h2>
           <div className={s.container}>
             <div className={s.backdrop} style={{
-              backgroundImage: `url(http://image.tmdb.org/t/p/w500${movie.backdrop_path})`
+              backgroundImage: `url(http://image.tmdb.org/t/p/w500${resource.backdrop_path})`
             }}></div>
 
             <div className={s.side}>
               <img
                 className={s.poster}
-                src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`} alt="Poster"/>
+                src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${resource.poster_path}`} alt="Poster"/>
             </div>
             <div className={s.description}>
-              <h2>{movie.title}</h2>
+              <h2>{resource.name ? resource.name : resource.title}</h2>
               <ul>
-                <li>{(movie.release_date).split('-')[0]}</li>
-                <li>{this.renderGenres(movie.genres)}</li>
-                <li>{`${movie.vote_average} / 10`}</li>
+                {resource.release_date && <li>{(resource.release_date).split('-')[0]}</li>}
+                <li>{this.renderGenres(resource.genres)}</li>
+                <li>{`${resource.vote_average} / 10`}</li>
               </ul>
               <p>
-                {movie.overview}
+                {resource.overview}
               </p>
             </div>
           </div>

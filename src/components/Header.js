@@ -4,13 +4,34 @@ import {NavLink} from 'react-router-dom';
 import cn from 'classnames';
 
 const menuItems = [
-  'Peliculas',
-  'Series',
-  'Libros',
-  'Musica',
-  'Sitios',
-  'Otros',
-  'Sobre',
+  {
+    name: 'Peliculas',
+    path: 'movies',
+  },
+  {
+    name: 'Series',
+    path: 'shows',
+  },
+  {
+    name: 'Libros',
+    path: 'books',
+  },
+  {
+    name: 'Musica',
+    path: 'music',
+  },
+  {
+    name: 'Sitios',
+    path: 'sites',
+  },
+  {
+    name: 'Otros',
+    path: 'other',
+  },
+  {
+    name: 'Sobre',
+    path: 'about',
+  },
 ];
 
 class Header extends React.Component {
@@ -75,10 +96,10 @@ class Header extends React.Component {
           {menuItems.map((item, i) => 
             <li key={i} className={s.menuItem} onClick={this.closeMenu}>
               <NavLink
-                to={`/${item.toLowerCase()}`}
+                to={`/${item.path}`}
                 className={s.menuItemLink}
                 activeClassName={s.selected}>
-                {item}
+                {item.name}
               </NavLink>
             </li>
           )}

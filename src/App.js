@@ -11,18 +11,18 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 
 import Movies from './routes/movies/Movies';
-import DescriptionMovie from './routes/movies/DescriptionMovie';
+
 import Shows from './routes/shows/Shows';
+import DescriptionResource from './modules/resource/DescriptionResource';
+
 import Books from './routes/books/Books';
 import Music from './routes/music/Music';
 import Sites from './routes/sites/Sites';
 import Other from './routes/other/Other';
 import Home from './routes/home/Home';
 
-
-
 const store = createStore(
-  reducers
+  reducers,
 );
 
 class App extends React.Component {
@@ -34,14 +34,19 @@ class App extends React.Component {
             <Header />
             <div className={s.content}>
               <Route exact path="/" component={Movies}/>
-              <Route exact path="/peliculas" component={Movies}/>
-              <Route path="/peliculas/:id" component={DescriptionMovie}/>
-              <Route path="/series" component={Shows}/>
-              <Route path="/libros" component={Books}/>
-              <Route path="/musica" component={Music}/>
-              <Route path="/sitios" component={Sites}/>
-              <Route path="/otros" component={Other}/>
-              <Route exact path="/sobre" component={Home}/>
+
+              <Route exact path="/movies" component={Movies}/>
+              <Route path="/movie/:id" render={(props) => <DescriptionResource type="movie" {...props} />} />
+
+              <Route path="/shows" component={Shows}/>
+              <Route path="/show/:id" render={(props) => <DescriptionResource type="show" {...props}/>} />
+
+              <Route path="/books" component={Books}/>
+              <Route path="/music" component={Music}/>
+              <Route path="/sites" component={Sites}/>
+              <Route path="/other" component={Other}/>
+
+              <Route exact path="/about" component={Home}/>
             </div>
             <Footer />
           </div>
