@@ -7,6 +7,13 @@ const credentials = require('./creds.js');
 
 const app = express();
 
+// special case public URLs that are equivalent
+// as visting the root (similar to `200.html` on github)
+app.get('/peliculas/:id', (req, res, next) => {
+  req.url = '/';
+  next();
+});
+
 app.use(express.static('build'));
 
 app.use(bodyParser.urlencoded({ extended: true }));
