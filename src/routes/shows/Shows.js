@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './Shows.css';
-import UnderConstruction from '../../components/UnderConstruction';
+import Resources from '../../modules/resource/Resources';
 
 class Movies extends React.Component {
   render() {
@@ -8,7 +8,9 @@ class Movies extends React.Component {
       <div>
         <h2 className={s.title}>Series</h2>
         <div>
-          <UnderConstruction />
+          <Resources
+            type="show"
+          />
         </div>
       </div>
     );

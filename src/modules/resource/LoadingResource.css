@@ -1,0 +1,49 @@
+.loadingMovie {
+  background-color: #fbfbfb;
+  width: 146px;
+  height: 210px;
+  border-radius: 3px;
+  display: inline-block;
+  background-size: 100%;
+  -webkit-animation-duration: 3.6s;
+  -moz-animation-duration: 3.6s;
+  -o-animation-duration: 3.6s;
+  animation-duration: 3.6s;
+  -webkit-animation-name: pulsateAnimation;
+  -moz-animation-name: pulsateAnimation;
+  -o-animation-name: pulsateAnimation;
+  animation-name: pulsateAnimation;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  -o-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-in-out;
+  -moz-animation-timing-function: ease-in-out;
+  -o-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  display: inline-block;
+  margin-right: 25px;
+  margin-bottom: 25px;
+}
+
+.loadingMovie:nth-child(6n){
+  margin-right: 0;
+}
+
+@keyframes pulsateAnimation {
+  0% {
+    background-color: transparent;
+  }
+
+  25% {
+    background-color: #efefef;
+  }
+
+  50% {
+    background-color: transparent;
+  }
+
+  100% {
+    background-color: transparent;
+  }
+}
