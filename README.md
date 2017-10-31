@@ -1,20 +1,26 @@
 # Diversidad Media 
+Diversidad Media es una plataforma para generar espacios más diversos, ya sea mediante Películas, Libros, Musica, entre otros. El proyecto está en rápido crecimiento y hay muchas cosas por hacer. Estamos cubriendo lo básico todavia.
 
-## How to run this
+Acá podés encontrar más información:
+https://medium.com/@okbel/diversidad-media-e0783f3e20de
 
+### Server
 To run the server:
+Para correr el servidor: 
 
 ```sh
   dotenv yarn watch-server
 ```
 
-To run the client
+### Client
+To run the client:
+Para correr el client: 
 
 ```sh
   yarn watch-client
 ```
 
-## ENV
+### Env Params
 
 ```
 CLIENT_EMAIL=<CLIENT_EMAIL>
@@ -25,4 +31,4 @@ TMDB_MOVIES_LIST=36681
 TMDB_SHOWS_LIST=37347
 ```
 
-diversidadmedia.com. Diversidad Media 2017
+www.diversidadmedia.com. Diversidad Media 2017
