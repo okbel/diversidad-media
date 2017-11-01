@@ -8,9 +8,7 @@ class Movies extends React.Component {
       <div>
         <h2 className={s.title}>Peliculas</h2>
         <div>
-          <Resources
-            type="movie"
-          />
+          <Resources type="movie" />
         </div>
       </div>
     );

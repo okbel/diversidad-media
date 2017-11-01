@@ -19,14 +19,31 @@ app.use((req, res, next) => {
 });
 
 const auth = new google.auth.JWT(
-  credentials.client_email,
+  credentials.google.client_email,
   null,
-  credentials.private_key,
-  ['https://www.googleapis.com/auth/spreadsheets'],
+  credentials.google.private_key,
+  ['https://www.googleapis.com/auth/spreadsheets', 'https://www.googleapis.com/auth/books'],
   null
 );
 
 google.options({auth});
+
+const books = google.books('v1');
+
+const getBooks = () => {
+  return new Promise((resolve, reject) => {
+    books.bookshelves.volumes.list({
+      userId: credentials.google.books.user_id,
+      shelf: credentials.google.books.shelf,
+    }, (err, response) => {
+      if (err) {
+        console.log(err);
+        return reject(err);
+      }
+      resolve(response);
+    });
+  });
+};
 
 const sheets = google.sheets('v4');
 const spreadsheetId = '18Q3kTrNtTYUyscylEly5mMms_n9g_sj0IPdAnn-9EME';
@@ -42,12 +59,20 @@ const getMoviesIds = (req, res) => {
   });
 }
 
-const request = axios.create({
+
+
+const TMDBrequest = axios.create({
   baseURL: 'https://api.themoviedb.org'
 });
 
-request.defaults.headers.common['Authorization'] = `Bearer ${credentials.tmdb.access_token}`;
-request.defaults.headers.common['Content-Type'] = `application/json;charset=utf-8`;
+TMDBrequest.defaults.headers.common['Authorization'] = `Bearer ${credentials.tmdb.access_token}`;
+TMDBrequest.defaults.headers.common['Content-Type'] = `application/json;charset=utf-8`;
+
+const GRrequest = axios.create({
+  baseURL: ': https://www.goodreads.com/'
+});
+
+GRrequest.defaults.headers.common['Content-Type'] = `application/json;charset=utf-8`;
 
 app.get('/update', async (req, res, next) => {
   try {
@@ -55,7 +80,7 @@ app.get('/update', async (req, res, next) => {
 
     ids.map(async (id) => {
       try {
-        await request.post(`/3/list/${credentials.tmdb.list}/add_item?api_key=${credentials.tmdb.api_key}`, {
+        await TMDBrequest.post(`/3/list/${credentials.tmdb.list}/add_item?api_key=${credentials.tmdb.api_key}`, {
           media_id: id
         }); 
       } catch (err) {
@@ -67,11 +92,24 @@ app.get('/update', async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-})
+});
+
+app.get('/books', async ({query: {page}}, res, next) => {
+  try {
+    const {items, totalItems} = await getBooks();
+
+    res.json({
+      results: items,
+      total_pages: 1,
+    });
+  } catch (err) {
+    next(err);
+  }
+});
 
 app.get('/movies', async ({query: {page}}, res, next) => {
   try {
-    const {data} = await request.get(`/4/list/${credentials.tmdb.lists.movies}?api_key=${credentials.tmdb.api_key}&page=${page}`);
+    const {data} = await TMDBrequest.get(`/4/list/${credentials.tmdb.lists.movies}?api_key=${credentials.tmdb.api_key}&page=${page}`);
     res.send(data);
   } catch (err) {
     next(err);
@@ -80,7 +118,16 @@ app.get('/movies', async ({query: {page}}, res, next) => {
 
 app.get('/shows', async ({query: {page}}, res, next) => {
   try {
-    const {data} = await request.get(`/4/list/${credentials.tmdb.lists.shows}?api_key=${credentials.tmdb.api_key}&page=${page}`);
+    const {data} = await TMDBrequest.get(`/4/list/${credentials.tmdb.lists.shows}?api_key=${credentials.tmdb.api_key}&page=${page}`);
+    res.send(data);
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.get('/books', async ({query: {page}}, res, next) => {
+  try {
+    const {data} = await GRrequest.get(`/books/${credentials.tmdb.lists.shows}?key=${credentials.gr.api_key}&page=${page}`);
     res.send(data);
   } catch (err) {
     next(err);
@@ -89,7 +136,7 @@ app.get('/shows', async ({query: {page}}, res, next) => {
 
 app.get('/list/:id', async ({params: {id}}, res, next) => {
   try {
-    const {data} = await request.get(`/4/list/${id}?api_key=${credentials.tmdb.api_key}`);
+    const {data} = await TMDBrequest.get(`/4/list/${id}?api_key=${credentials.tmdb.api_key}`);
     res.send(data);
   } catch (err) {
     next(err);
@@ -98,7 +145,7 @@ app.get('/list/:id', async ({params: {id}}, res, next) => {
 
 app.get('/movie/:id', async ({params: {id}}, res, next) => {
   try {
-    const {data} = await request.get(`/3/movie/${id}?api_key=${credentials.tmdb.api_key}`);
+    const {data} = await TMDBrequest.get(`/3/movie/${id}?api_key=${credentials.tmdb.api_key}`);
     res.send(data);
   } catch (err) {
     next(err);
@@ -107,7 +154,7 @@ app.get('/movie/:id', async ({params: {id}}, res, next) => {
 
 app.get('/show/:id', async ({params: {id}}, res, next) => {
   try {
-    const {data} = await request.get(`/3/tv/${id}?api_key=${credentials.tmdb.api_key}`);
+    const {data} = await TMDBrequest.get(`/3/tv/${id}?api_key=${credentials.tmdb.api_key}`);
     res.send(data);
   } catch (err) {
     next(err);

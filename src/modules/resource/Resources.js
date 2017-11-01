@@ -66,6 +66,7 @@ Resources.propTypes = {
   type: PropTypes.oneOf([
     'show',
     'movie',
+    'book',
   ]),
 };
 
