@@ -104,6 +104,9 @@ class Header extends React.Component {
             </li>
           )}
         </ul>
+        <a href="https://goo.gl/forms/6F4qyjasOvVXoqzd2" target="_blank" rel="noopener noreferrer" className={s.add}>
+          Agregá tu recurso
+        </a>      
       </nav>    
     </header>
     );

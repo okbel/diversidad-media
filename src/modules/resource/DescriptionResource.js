@@ -20,7 +20,7 @@ class DescriptionResource extends React.Component {
     })
   }
 
-  getParent(type) {
+  getParentByType(type) {
     switch(type) {
     case 'show':
       return 'Series';
@@ -35,14 +35,17 @@ class DescriptionResource extends React.Component {
     const {type} = this.props;
     const {resource} = this.state;
 
+
+
     if (!resource) {
       return null;
-
     }
+
+    const title = resource.name ? resource.name : resource.title;
 
     return (
       <div>
-        <h2 className={s.title}><Link to={`/${type}s`}>Peliculas</Link> › {resource.title}</h2>
+        <h2 className={s.title}><Link to={`/${type}s`}>{this.getParentByType(type)}</Link> › {title}</h2>
           <div className={s.container}>
             <div className={s.backdrop} style={{
               backgroundImage: `url(http://image.tmdb.org/t/p/w500${resource.backdrop_path})`
@@ -54,7 +57,7 @@ class DescriptionResource extends React.Component {
                 src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${resource.poster_path}`} alt="Poster"/>
             </div>
             <div className={s.description}>
-              <h2>{resource.name ? resource.name : resource.title}</h2>
+              <h2>{title}</h2>
               <ul>
                 {resource.release_date && <li>{(resource.release_date).split('-')[0]}</li>}
                 <li>{this.renderGenres(resource.genres)}</li>
