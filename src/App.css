@@ -24,3 +24,20 @@
   flex: 1;
   padding: 30px 0;
 }
+
+.banner {
+  background-color: #61c482;
+  padding: 5px 0;
+  text-align: center;
+  color: white;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: hsla(0,0%,100%,.90);
+}
+
+.banner .link {
+  color: white;
+  text-decoration: underline;
+  display: inline-block;
+  margin-left: 4px;
+}
