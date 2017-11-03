@@ -1,4 +1,5 @@
 const express = require('express');
+const {graphiqlExpress} = require("graphql-server-express");
 
 const router = express.Router();
 
@@ -13,6 +14,7 @@ router.use(express.static('build'));
 // =============================================================================
 
 router.use('/graph', require('./graph'));
+router.use("/iql", graphiqlExpress({endpointURL: '/graph'}));
 
 // =============================================================================
 // ROUTES

@@ -11,11 +11,9 @@ const router = express.Router();
 
 const schema = makeExecutableSchema({typeDefs, resolvers});
 
-router.use("/graph", graphqlExpress(res =>({
+router.use("/", graphqlExpress(res =>({
   context: {loaders},
   schema
 })));
-
-router.use("/iql", graphiqlExpress({endpointURL: '/graph'}));
 
 module.exports = router;
