@@ -22,8 +22,11 @@ Para correr el client:
 
 ### Endpoints
 `/graph` - GraphQL endpoint
+
 `/api` - API endpoint
+
 `/iql` - GraphiQL endpoint
+
 
 ## Active Contributors
 Belén Curcio @okbel - Frontend and Backend Development - Content
