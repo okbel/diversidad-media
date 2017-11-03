@@ -29,7 +29,7 @@ Para correr el client:
 
 
 ## Active Contributors
-Belén Curcio @okbel - Frontend and Backend Development - Content
+Belén Curcio [@okbel](http://twitter.com/okbel) - Frontend and Backend Development - Content
 
 
 [diversidadmedia.com](diversidadmedia.com)
