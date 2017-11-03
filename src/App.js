@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import reducers from './reducers';
 
 import s from './App.css';
@@ -39,21 +39,23 @@ class App extends React.Component {
             <div className={s.container}>
               <Header />
               <div className={s.content}>
-                <Route exact path="/" component={Movies}/>
+                <Switch>
+                  <Route exact path="/" component={Movies}/>
 
-                <Route exact path="/movies" component={Movies}/>
-                <Route path="/movie/:id" render={(props) => <DescriptionResource type="movie" {...props} />} />
+                  <Route exact path="/movies" component={Movies}/>
+                  <Route path="/movie/:id" render={(props) => <DescriptionResource type="movie" {...props} />} />
 
-                <Route path="/shows" component={Shows}/>
-                <Route path="/show/:id" render={(props) => <DescriptionResource type="show" {...props}/>} />
+                  <Route path="/shows" component={Shows}/>
+                  <Route path="/show/:id" render={(props) => <DescriptionResource type="show" {...props}/>} />
 
-                <Route path="/books" component={Books}/>
-                <Route path="/music" component={Music}/>
-                <Route path="/sites" component={Sites}/>
-                <Route path="/other" component={Other}/>
+                  <Route path="/books" component={Books}/>
+                  <Route path="/music" component={Music}/>
+                  <Route path="/sites" component={Sites}/>
+                  <Route path="/other" component={Other}/>
 
-                <Route exact path="/about" component={Home}/>
-                <Route path="*" component={Missing}/>
+                  <Route exact path="/about" component={Home}/>
+                  <Route component={Missing}/>
+                </Switch>
               </div>
               <Footer />
             </div>
