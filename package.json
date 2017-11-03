@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "apollo-client-preset": "^1.0.1",
     "autoprefixer": "7.1.2",
     "axios": "^0.17.0",
     "babel-core": "6.25.0",
@@ -31,6 +32,7 @@
     "googleapis": "^22.2.0",
     "graphql": "^0.11.7",
     "graphql-server-express": "^1.2.0",
+    "graphql-tag": "^2.5.0",
     "graphql-tools": "^2.7.2",
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
@@ -43,6 +45,7 @@
     "prop-types": "^15.6.0",
     "query-string": "^5.0.1",
     "react": "^16.0.0",
+    "react-apollo": "^2.0.0",
     "react-dev-utils": "^4.1.0",
     "react-dom": "^16.0.0",
     "react-paginate": "^5.0.0",
