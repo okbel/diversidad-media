@@ -24,7 +24,7 @@ class Resources extends React.Component {
 
   fetchResources = async (query = {}) => {
     const {type} = this.props;
-    const {data: {results: resources, total_pages}} = await axios.get(`/${type}s?${queryString.stringify(query)}`);
+    const {data: {results: resources, total_pages}} = await axios.get(`/api/${type}s?${queryString.stringify(query)}`);
     this.setState({
       resources,
       totalPages: total_pages

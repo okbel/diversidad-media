@@ -20,18 +20,15 @@ Para correr el client:
   yarn watch-client
 ```
 
-### Env Params
-
-```
-CLIENT_EMAIL=<CLIENT_EMAIL>
-PRIVATE_KEY=<PRIVATE>
-TMDB_API_KEY=<KEY>
-TMDB_ACCESS_TOKEN=<ACCCESS_TOKEN>
-TMDB_MOVIES_LIST=36681
-TMDB_SHOWS_LIST=37347
-```
+### Endpoints
+`/graph` - GraphQL endpoint
+`/api` - API endpoint
+`/iql` - GraphiQL endpoint
 
 ## Active Contributors
 Belén Curcio @okbel - Frontend and Backend Development - Content
 
-www.diversidadmedia.com. Diversidad Media 2017
+
+[diversidadmedia.com](diversidadmedia.com)
+Diversidad Media 2017
+

@@ -10,7 +10,7 @@ class DescriptionResource extends React.Component {
 
   async componentWillMount() {
     const id = this.props.match.params.id;
-    const {data:resource} = await axios.get(`/${this.props.type}/${id}`);
+    const {data:resource} = await axios.get(`/api/${this.props.type}/${id}`);
     this.setState({resource});
   }
 

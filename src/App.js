@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import reducers from './reducers';
 
 import s from './App.css';
@@ -20,6 +20,7 @@ import Music from './routes/music/Music';
 import Sites from './routes/sites/Sites';
 import Other from './routes/other/Other';
 import Home from './routes/home/Home';
+import Missing from './components/Missing';
 
 const store = createStore(
   reducers,
@@ -30,25 +31,34 @@ class App extends React.Component {
     return (
       <Provider store={store}>
         <Router>
-          <div className={s.container}>
-            <Header />
-            <div className={s.content}>
-              <Route exact path="/" component={Movies}/>
-
-              <Route exact path="/movies" component={Movies}/>
-              <Route path="/movie/:id" render={(props) => <DescriptionResource type="movie" {...props} />} />
-
-              <Route path="/shows" component={Shows}/>
-              <Route path="/show/:id" render={(props) => <DescriptionResource type="show" {...props}/>} />
-
-              <Route path="/books" component={Books}/>
-              <Route path="/music" component={Music}/>
-              <Route path="/sites" component={Sites}/>
-              <Route path="/other" component={Other}/>
-
-              <Route exact path="/about" component={Home}/>
+          <div>
+            <div className={s.banner}>
+              Estamos trabajando en la plataforma web. Para ver el listado completo de recursos hacé click 
+              <a className={s.link} href="https://docs.google.com/spreadsheets/d/18Q3kTrNtTYUyscylEly5mMms_n9g_sj0IPdAnn-9EME/edit?usp=sharing" target="_blank" rel="noopener noreferrer">acá</a>.
             </div>
-            <Footer />
+            <div className={s.container}>
+              <Header />
+              <div className={s.content}>
+                <Switch>
+                  <Route exact path="/" component={Movies}/>
+
+                  <Route exact path="/movies" component={Movies}/>
+                  <Route path="/movie/:id" render={(props) => <DescriptionResource type="movie" {...props} />} />
+
+                  <Route path="/shows" component={Shows}/>
+                  <Route path="/show/:id" render={(props) => <DescriptionResource type="show" {...props}/>} />
+
+                  <Route path="/books" component={Books}/>
+                  <Route path="/music" component={Music}/>
+                  <Route path="/sites" component={Sites}/>
+                  <Route path="/other" component={Other}/>
+
+                  <Route exact path="/about" component={Home}/>
+                  <Route component={Missing}/>
+                </Switch>
+              </div>
+              <Footer />
+            </div>
           </div>
         </Router>
       </Provider>
