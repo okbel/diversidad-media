@@ -20,6 +20,7 @@ import Music from './routes/music/Music';
 import Sites from './routes/sites/Sites';
 import Other from './routes/other/Other';
 import Home from './routes/home/Home';
+import Missing from './components/Missing';
 
 const store = createStore(
   reducers,
@@ -52,6 +53,7 @@ class App extends React.Component {
                 <Route path="/other" component={Other}/>
 
                 <Route exact path="/about" component={Home}/>
+                <Route path="*" component={Missing}/>
               </div>
               <Footer />
             </div>
