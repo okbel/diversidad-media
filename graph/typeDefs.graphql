@@ -1,7 +1,25 @@
-type Query {
-  hello: String
+type Movie {
+  id: ID!
+  title: String
+}
+
+type Show {
+  id: ID!
+  title: String
+}
+
+type Book {
+  id: ID!
+  title: String
+}
+
+type RootQuery {
+  test: String
+  movie: Movie
+  show: Show
+  book: Book
 }
 
 schema {
-  query: Query
+  query: RootQuery
 }

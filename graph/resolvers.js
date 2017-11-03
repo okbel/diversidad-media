@@ -1,5 +1,5 @@
 module.exports = {
-  Query: {
-    hello: () => 'world',
+  RootQuery: {
+    test: () => 'test',
   }
 };
