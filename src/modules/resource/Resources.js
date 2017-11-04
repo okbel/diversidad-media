@@ -24,21 +24,33 @@ class Resources extends React.Component {
 
   fetchResources = async (query = {}) => {
     const {type} = this.props;
-    const {data: {results: resources, total_pages}} = await axios.get(`/api/${type}s?${queryString.stringify(query)}`);
+    const {data: {results: resources, total_pages, next_page, prev_page}} = await axios.get(`/api/${type}s?${queryString.stringify(query)}`);
     this.setState({
       resources,
+      currentPage: query.page || 0,
+      prevPage: prev_page,
+      nextPage: next_page,
       totalPages: total_pages
     });
   }
 
   pageClick = ({selected}) => {
     const page = selected + 1;
-    this.fetchResources({page});
+    console.log(this.state.prevPage)
+    if (this.state.prevPage && selected == this.state.currentPage - 1) {
+        this.fetchResources({pageToken: this.state.prevPage});
+    } else if (this.state.nextPage && selected == this.state.currentPage + 1) {
+        this.fetchResources({pageToken: this.state.nextPage});
+    } else {
+        this.fetchResources({page});
+    }
   }
 
   render() {
     const {type} = this.props;
-    const {resources, totalPages} = this.state;
+    const {resources, totalPages, prevPage, nextPage} = this.state;
+    const pageRangeDisplayed = prevPage || nextPage ? 1 : 5;
+    const marginPagesDisplayed = prevPage || nextPage ? 0 : 2;
 
     if (!resources.length){
       return Array(12).fill({}).map((_, i) =>
@@ -48,12 +60,14 @@ class Resources extends React.Component {
     return (
       <div>
         {resources.map(resource => 
-          <Resource 
+          <Resource
             type={type}
             key={resource.id}
             data={resource}
           />)}
-        <Paginate 
+        <Paginate
+          pageRangeDisplayed={pageRangeDisplayed}
+          marginPagesDisplayed={marginPagesDisplayed}
           pageCount={totalPages}
           onPageChange={this.pageClick}
         />
