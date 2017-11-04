@@ -13,6 +13,7 @@ https://medium.com/@okbel/diversidad-media-e0783f3e20de
 
 * [Yarn](https://yarnpkg.com/en/) (recommended)
 * [dotenv](https://github.com/bkeepers/dotenv) (recommended)
+* [nodemon](https://github.com/remy/nodemon)
 * [TMDB key](https://developers.themoviedb.org/3/getting-started)
 * [Google Books API key](https://developers.google.com/books/)
 
