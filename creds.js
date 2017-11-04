@@ -8,5 +8,11 @@ module.exports = {
       "movies": process.env.TMDB_MOVIES_LIST,
       "shows": process.env.TMDB_SHOWS_LIST,
     }
+  },
+  "spotify": {
+    "client_id": process.env.SPOTIFY_CLIENT_ID,
+    "client_secret": process.env.SPOTIFY_CLIENT_SECRET,
+    "user_id": process.env.SPOTIFY_USER_ID,
+    "playlist_id": process.env.SPOTIFY_PLAYLIST_ID,
   }
 }
