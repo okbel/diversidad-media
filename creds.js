@@ -8,5 +8,11 @@ module.exports = {
       "movies": process.env.TMDB_MOVIES_LIST,
       "shows": process.env.TMDB_SHOWS_LIST,
     }
+  },
+  "yt": {
+    "key": process.env.YT_KEY,
+    "lists": {
+      "videos": process.env.YT_VIDEO_LIST,
+    }
   }
 }

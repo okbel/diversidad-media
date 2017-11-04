@@ -15,6 +15,7 @@ https://medium.com/@okbel/diversidad-media-e0783f3e20de
 * [dotenv](https://github.com/bkeepers/dotenv) (recommended)
 * [TMDB key](https://developers.themoviedb.org/3/getting-started)
 * [Google Books API key](https://developers.google.com/books/)
+* [Youtube API key](https://console.cloud.google.com/apis/credentials)
 
 ### Setup
 

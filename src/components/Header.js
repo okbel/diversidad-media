@@ -13,6 +13,10 @@ const menuItems = [
     path: 'shows',
   },
   {
+    name: 'Videos',
+    path: 'videos',
+  },
+  {
     name: 'Libros',
     path: 'books',
   },

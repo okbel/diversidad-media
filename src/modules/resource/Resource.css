@@ -8,6 +8,30 @@
   position: relative;
 }
 
+.youtube {
+  background-color: #65DBC1;
+  border-radius: 3px;
+  display: inline-block;
+  background-size: 100%;
+  position: relative;
+  width: 284px;
+  height: 158px;
+}
+
+@media (--desktop) {
+  .youtube {
+    width: 442px;
+    height: 248px;
+  }
+}
+
+@media (--large-desktop) {
+  html .youtube {
+    width: 484px;
+    height: 272px;
+  }
+}
+
 .rating {
   opacity: 0;
   transition: opacity 200ms ease-in;
@@ -31,6 +55,12 @@
 .coverOverlay:hover, .coverOverlay:hover + .rating{
   cursor: pointer;
   opacity: 1;
+}
+
+.youtubeContainer {
+  display: inline-block;
+  margin-bottom: 25px;
+  margin-right: 20px;
 }
 
 .movieContainer {
