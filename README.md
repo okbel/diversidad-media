@@ -2,7 +2,7 @@
 
 [Español](README-es.md)
 
-Diversidad Media is a platform to generate more diverse spaces, through Movies, Books, Music, and otehrs. The project is in fast growth and there are many things to do. We are still covering the basic.
+Diversidad Media is a platform to generate more diverse spaces, through Movies, Books, Music, and others. The project is in fast growth and there are many things to do. We are still covering the basics.
 
 Here you can find more information (Spanish):
 https://medium.com/@okbel/diversidad-media-e0783f3e20de
