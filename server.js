@@ -23,4 +23,4 @@ app.use((req, res, next) => {
 
 app.use('/', routes);
 
-app.listen(3000);
+app.listen(parseInt(process.env.DM_SERVER_PORT, 10) || 3000);
