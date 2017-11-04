@@ -11,7 +11,7 @@ https://medium.com/@okbel/diversidad-media-e0783f3e20de
 
 ### Prerequisites
 
-* [Yarn](https://yarnpkg.com/en/)
+* [Yarn](https://yarnpkg.com/en/) (recommended)
 * [dotenv](https://github.com/bkeepers/dotenv) (recommended)
 * [TMDB key](https://developers.themoviedb.org/3/getting-started)
 * [Google Books API key](https://developers.google.com/books/)
@@ -20,6 +20,12 @@ https://medium.com/@okbel/diversidad-media-e0783f3e20de
 
 Create a `.env` file with your keys, following `.env.example` format.
 
+### Install dependencies
+
+```sh
+yarn # or npm install
+```
+
 ### Server
 
 The server connects to TMDB, Google Books and any other backend provider.
@@ -27,7 +33,7 @@ By default it listens to port 3000, but you can use another one setting
 the `DM_SERVER_PORT` environment variable.
 
 ```sh
-dotenv yarn watch-server
+dotenv yarn watch-server # or dotenv npm run watch-server
 ```
 
 ### Client
@@ -37,7 +43,7 @@ By default it listens to port 3001, but you can use another one setting
 the `DM_CLIENT_PORT` environment variable.
 
 ```sh
-yarn watch-client
+yarn watch-client # or dotenv npm run watch-client
 ```
 
 ## Active Contributors
