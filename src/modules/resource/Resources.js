@@ -3,6 +3,7 @@ import Resource from './Resource';
 import LoadingResource from './LoadingResource';
 import axios from 'axios';
 import Paginate from '../../components/Paginate';
+import LoadMore from '../../components/LoadMore';
 import queryString from 'query-string';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -11,7 +12,8 @@ import PropTypes from 'prop-types';
 class Resources extends React.Component {
   state = {
     resources: [],
-    totalPages: 0
+    totalPages: 0,
+    nextPage: '',
   }
 
   componentWillMount() {
@@ -24,33 +26,49 @@ class Resources extends React.Component {
 
   fetchResources = async (query = {}) => {
     const {type} = this.props;
-    const {data: {results: resources, total_pages, next_page, prev_page}} = await axios.get(`/api/${type}s?${queryString.stringify(query)}`);
-    this.setState({
-      resources,
-      currentPage: query.page || 0,
-      prevPage: prev_page,
-      nextPage: next_page,
-      totalPages: total_pages
-    });
+    const {data: {results: resources, total_pages, next_page = ""}} = await axios.get(`/api/${type}s?${queryString.stringify(query)}`);
+
+    if (type === 'video') {
+      this.setState(state => ({
+        resources: [...state.resources, ...resources],
+        totalPages: total_pages,
+        nextPage: next_page,
+      }));
+    } else {
+      this.setState({
+        resources,
+        totalPages: total_pages,
+      });
+    }
   }
 
   pageClick = ({selected}) => {
     const page = selected + 1;
-    console.log(this.state.prevPage)
-    if (this.state.prevPage && selected == this.state.currentPage - 1) {
-        this.fetchResources({pageToken: this.state.prevPage});
-    } else if (this.state.nextPage && selected == this.state.currentPage + 1) {
-        this.fetchResources({pageToken: this.state.nextPage});
+    this.fetchResources({page});
+  }
+  
+  loadMore = () => {
+    const {nextPage} = this.state;
+
+    this.fetchResources({
+      pageToken: nextPage
+    })
+  }
+
+  renderPaginationOrLoadMore = (type) => {
+    if (type === 'video') {
+      return <LoadMore loadMore={this.loadMore} />
     } else {
-        this.fetchResources({page});
+      return <Paginate 
+        pageCount={this.state.totalPages}
+        onPageChange={this.pageClick}
+      />
     }
   }
 
   render() {
     const {type} = this.props;
-    const {resources, totalPages, prevPage, nextPage} = this.state;
-    const pageRangeDisplayed = prevPage || nextPage ? 1 : 5;
-    const marginPagesDisplayed = prevPage || nextPage ? 0 : 2;
+    const {resources, totalPages} = this.state;
 
     if (!resources.length){
       return Array(12).fill({}).map((_, i) =>
@@ -60,17 +78,12 @@ class Resources extends React.Component {
     return (
       <div>
         {resources.map(resource => 
-          <Resource
+          <Resource 
             type={type}
             key={resource.id}
             data={resource}
           />)}
-        <Paginate
-          pageRangeDisplayed={pageRangeDisplayed}
-          marginPagesDisplayed={marginPagesDisplayed}
-          pageCount={totalPages}
-          onPageChange={this.pageClick}
-        />
+          {this.renderPaginationOrLoadMore(type)}
       </div>
     );
   }

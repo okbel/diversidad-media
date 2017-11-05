@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import ReactPaginate from 'react-paginate';
 import s from './Paginate.css';
 
-const Paginate = ({pageRangeDisplayed, marginPagesDisplayed, pageCount, onPageChange}) => (
+const Paginate = ({pageCount, onPageChange}) => (
   <ReactPaginate
     initialPage={0}
     pageCount={pageCount}
-    pageRangeDisplayed={pageRangeDisplayed === undefined ? 5 : pageRangeDisplayed}
-    marginPagesDisplayed={marginPagesDisplayed === undefined ? 2 : marginPagesDisplayed}
+    pageRangeDisplayed={5}
+    marginPagesDisplayed={2}
     onPageChange={onPageChange}
     breakClassName={s.break}
     containerClassName={s.container}
