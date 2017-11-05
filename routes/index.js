@@ -20,6 +20,6 @@ router.use("/iql", graphiqlExpress({ endpointURL: '/graph' }));
 // ROUTES
 // =============================================================================
 
-router.use('/api', require('./api'), require('./api/music'));
+router.use('/api', require('./api'));
 
 module.exports = router;

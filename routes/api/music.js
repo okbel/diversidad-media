@@ -40,7 +40,7 @@ const renewAuthToken = async () => {
     };
 
   } catch (err) {
-    console.log(err);
+    next(err);
   }
 }
 
@@ -68,7 +68,7 @@ instance.interceptors.request.use(async (config) => {
 // ROUTES
 // =============================================================================
 
-router.get('/music', async ({ query: { page } }, res, next) => {
+router.get('/', async ({ query: { page } }, res, next) => {
   try {
     console.log('Calling music')
     const { data: { items: results, limit, total } } = await instance.get(`/v1/users/${credentials.spotify.user_id}/playlists/${credentials.spotify.playlist_id}/tracks?fields=limit,total,items.track(id,album(images,id,name),artists(id,name),name,popularity)&limit=20&offset=${page}`);
@@ -76,7 +76,6 @@ router.get('/music', async ({ query: { page } }, res, next) => {
 
     res.send({ results, total_pages });
   } catch (err) {
-    console.log('el error')
     next(err);
   }
 });

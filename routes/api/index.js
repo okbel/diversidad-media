@@ -18,45 +18,47 @@ request.defaults.headers.common['Content-Type'] = `application/json;charset=utf-
 // ROUTES
 // =============================================================================
 
-router.get('/movies', async ({query: {page}}, res, next) => {
+router.use('/music', require('./music'));
+
+router.get('/movies', async ({ query: { page } }, res, next) => {
   try {
-    const {data} = await request.get(`/4/list/${credentials.tmdb.lists.movies}?api_key=${credentials.tmdb.api_key}&page=${page}`);
+    const { data } = await request.get(`/4/list/${credentials.tmdb.lists.movies}?api_key=${credentials.tmdb.api_key}&page=${page}`);
     res.send(data);
   } catch (err) {
     next(err);
   }
 });
 
-router.get('/shows', async ({query: {page}}, res, next) => {
+router.get('/shows', async ({ query: { page } }, res, next) => {
   try {
-    const {data} = await request.get(`/4/list/${credentials.tmdb.lists.shows}?api_key=${credentials.tmdb.api_key}&page=${page}`);
+    const { data } = await request.get(`/4/list/${credentials.tmdb.lists.shows}?api_key=${credentials.tmdb.api_key}&page=${page}`);
     res.send(data);
   } catch (err) {
     next(err);
   }
 });
 
-router.get('/list/:id', async ({params: {id}}, res, next) => {
+router.get('/list/:id', async ({ params: { id } }, res, next) => {
   try {
-    const {data} = await request.get(`/4/list/${id}?api_key=${credentials.tmdb.api_key}`);
+    const { data } = await request.get(`/4/list/${id}?api_key=${credentials.tmdb.api_key}`);
     res.send(data);
   } catch (err) {
     next(err);
   }
 });
 
-router.get('/movie/:id', async ({params: {id}}, res, next) => {
+router.get('/movie/:id', async ({ params: { id } }, res, next) => {
   try {
-    const {data} = await request.get(`/3/movie/${id}?api_key=${credentials.tmdb.api_key}`);
+    const { data } = await request.get(`/3/movie/${id}?api_key=${credentials.tmdb.api_key}`);
     res.send(data);
   } catch (err) {
     next(err);
   }
 });
 
-router.get('/show/:id', async ({params: {id}}, res, next) => {
+router.get('/show/:id', async ({ params: { id } }, res, next) => {
   try {
-    const {data} = await request.get(`/3/tv/${id}?api_key=${credentials.tmdb.api_key}`);
+    const { data } = await request.get(`/3/tv/${id}?api_key=${credentials.tmdb.api_key}`);
     res.send(data);
   } catch (err) {
     next(err);
