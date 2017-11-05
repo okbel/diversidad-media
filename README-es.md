@@ -11,14 +11,21 @@ https://medium.com/@okbel/diversidad-media-e0783f3e20de
 
 ### Prerequisitos
 
-* [Yarn](https://yarnpkg.com/en/)
+* [Yarn](https://yarnpkg.com/en/) (recomendado)
 * [dotenv](https://github.com/bkeepers/dotenv) (recomendado)
+* [nodemon](https://github.com/remy/nodemon)
 * [TMDB key](https://developers.themoviedb.org/3/getting-started)
 * [Google Books API key](https://developers.google.com/books/)
 
 ### Configuración
 
 Crear un archivo `.env` con tus claves, siguiendo el formato de  `.env.example`.
+
+### Instalar dependencias
+
+```sh
+yarn # o npm install
+```
 
 ### Servidor
 
@@ -27,7 +34,7 @@ Por defecto escucha en el puerto 3000, pero puedes optar por otro estableciendo
 la variable de entorno `DM_SERVER_PORT`.
 
 ```sh
-dotenv yarn watch-server
+dotenv yarn watch-server # o dotenv npm run watch-server
 ```
 
 ### Cliente
@@ -37,7 +44,7 @@ backend. Por defecto escucha en el puerto 3000, pero puedes optar por otro
 estableciendo la variable de entorno `DM_CLIENT_PORT`.
 
 ```sh
-yarn watch-client
+yarn watch-client # o dotenv npm run watch-client
 ```
 
 ## Active Contributors
