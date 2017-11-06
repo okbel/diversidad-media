@@ -8,6 +8,34 @@
   position: relative;
 }
 
+.youtubeContainer {
+  flex: 1 1 100%;
+  margin-bottom: 50px;
+  border-radius: 3px;
+  width: 100%;
+
+  @media (--desktop) {
+    width: auto;
+    padding-right: 20px;
+    flex: 1 1 400px;
+    &:nth-child(2n) {
+      padding-right: 0;
+    }
+  }
+
+}
+
+.youtube {
+  background-color: #65DBC1;
+  border-radius: 3px;
+  display: inline-block;
+  background-size: 100%;
+  position: relative;
+  width: 100%;
+  min-height: 275px;
+  background-position: 0;
+}
+
 .rating {
   opacity: 0;
   transition: opacity 200ms ease-in;
@@ -32,6 +60,8 @@
   cursor: pointer;
   opacity: 1;
 }
+
+
 
 .movieContainer {
   display: inline-block;

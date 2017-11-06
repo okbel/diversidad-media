@@ -1,0 +1,6 @@
+.container.video {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+

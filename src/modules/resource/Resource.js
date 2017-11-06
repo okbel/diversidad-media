@@ -5,6 +5,32 @@ import {Link} from 'react-router-dom';
 class Resource extends React.Component {
   render() {
     const {type} = this.props;
+    switch (type) {
+      case 'show':
+      case 'movie':
+        return (
+          <TmdbResource
+            type={type}
+            data={this.props.data}
+          />
+        )
+      case 'video':
+        return (
+          <YtResource
+            type={type}
+            data={this.props.data}
+          />
+        )
+      default:
+        console.error(`Unexpected type ${type}`)
+        return <div></div>
+    }
+  }
+}
+
+class TmdbResource extends React.Component {
+  render() {
+    const {type} = this.props;
     const {id, title, release_date, poster_path, vote_average} = this.props.data;
     return (
       <Link to={`/${type}/${id}`} className={s.movieContainer}>
@@ -19,6 +45,24 @@ class Resource extends React.Component {
           {release_date && <li className={s.movieYear}>{(release_date).split('-')[0]}</li>}
         </ul>
       </Link>
+    );
+  }
+}
+
+class YtResource extends React.Component {
+  render() {
+    const {snippet} = this.props.data;
+    return (
+      <a target="_blank" href={`https://youtu.be/${snippet.resourceId.videoId}`} className={s.youtubeContainer}>
+        <div className={s.youtube} style={{
+          backgroundImage: `url(${snippet.thumbnails.high.url})`
+        }}>
+          <div className={s.coverOverlay}></div>
+        </div>
+        <ul className={s.movieDescription}>
+          <li className={s.movieName}>{snippet.title}</li>
+        </ul>
+      </a>
     );
   }
 }
