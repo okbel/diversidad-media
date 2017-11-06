@@ -9,14 +9,18 @@
 }
 
 .youtubeContainer {
-  flex: 1 1 400px;
+  flex: 1 1 100%;
   margin-bottom: 50px;
-  padding-right: 20px;
   border-radius: 3px;
 
-  &:nth-child(2n) {
-    padding-right: 0;
+  @media (--desktop) {
+    padding-right: 20px;
+    flex: 1 1 400px;
+    &:nth-child(2n) {
+      padding-right: 0;
+    }
   }
+
 }
 
 .youtube {
