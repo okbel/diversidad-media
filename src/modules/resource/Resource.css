@@ -83,12 +83,21 @@ a.movieContainer:nth-child(2n){
 
 
 @media (--desktop) {
-  a.movieContainer:nth-child(6n){
+  a.movieContainer:nth-child(5n){
     margin-right: 0px;
   }
 }
 
 @media (--large-desktop) {
+  a.movieContainer:nth-child(5n){
+    margin-right: 38px;
+  }
+  a.movieContainer:nth-child(5n):nth-child(2n){
+    margin-right: 20px;
+  }
+  a.movieContainer:nth-child(6n){
+    margin-right: 0px;
+  }
   a.movieContainer {
     margin-right: 38px;
   }
