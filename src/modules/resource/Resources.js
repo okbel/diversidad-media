@@ -3,15 +3,19 @@ import Resource from './Resource';
 import LoadingResource from './LoadingResource';
 import axios from 'axios';
 import Paginate from '../../components/Paginate';
+import LoadMore from '../../components/LoadMore';
 import queryString from 'query-string';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types';
+import s from './Resources.css';
+import cn from 'classnames';
 
 class Resources extends React.Component {
   state = {
     resources: [],
-    totalPages: 0
+    totalPages: 0,
+    nextPage: '',
   }
 
   componentWillMount() {
@@ -24,21 +28,50 @@ class Resources extends React.Component {
 
   fetchResources = async (query = {}) => {
     const {type} = this.props;
-    const {data: {results: resources, total_pages}} = await axios.get(`/api/${type}s?${queryString.stringify(query)}`);
-    this.setState({
-      resources,
-      totalPages: total_pages
-    });
+    const {data: {results: resources, total_pages, next_page = ""}} = await axios.get(`/api/${type}s?${queryString.stringify(query)}`);
+
+    if (type === 'video') {
+      this.setState(state => ({
+        resources: [...state.resources, ...resources],
+        totalPages: total_pages,
+        nextPage: next_page,
+      }));
+    } else {
+      this.setState({
+        resources,
+        totalPages: total_pages,
+      });
+    }
   }
 
   pageClick = ({selected}) => {
     const page = selected + 1;
     this.fetchResources({page});
   }
+  
+  loadMore = () => {
+    const {nextPage} = this.state;
+
+    this.fetchResources({
+      pageToken: nextPage
+    })
+  }
+
+  renderPaginationOrLoadMore = (type) => {
+    const {nextPage} = this.state;
+    if (type === 'video') {
+      return nextPage ? <LoadMore loadMore={this.loadMore} /> : null;
+    } else {
+      return <Paginate 
+        pageCount={this.state.totalPages}
+        onPageChange={this.pageClick}
+      />
+    }
+  }
 
   render() {
     const {type} = this.props;
-    const {resources, totalPages} = this.state;
+    const {resources} = this.state;
 
     if (!resources.length){
       return Array(12).fill({}).map((_, i) =>
@@ -46,17 +79,14 @@ class Resources extends React.Component {
     }
 
     return (
-      <div>
+      <div className={cn(s.container, s[type])}>
         {resources.map(resource => 
           <Resource 
             type={type}
             key={resource.id}
             data={resource}
           />)}
-        <Paginate 
-          pageCount={totalPages}
-          onPageChange={this.pageClick}
-        />
+          {this.renderPaginationOrLoadMore(type)}
       </div>
     );
   }
@@ -66,6 +96,7 @@ Resources.propTypes = {
   type: PropTypes.oneOf([
     'show',
     'movie',
+    'video',
   ]),
 };
 

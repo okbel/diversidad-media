@@ -11,6 +11,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Movies from './routes/movies/Movies';
 import Shows from './routes/shows/Shows';
+import Videos from './routes/videos/Videos';
 import Books from './routes/books/Books';
 import Music from './routes/music/Music';
 import Sites from './routes/sites/Sites';
@@ -41,6 +42,7 @@ class App extends React.Component {
                     <Route path="/shows" component={Shows}/>
                     <Route path="/show/:id" render={(props) => <DescriptionResource type="show" {...props}/>} />
 
+                    <Route path="/videos" component={Videos}/>
                     <Route path="/books" component={Books}/>
                     <Route path="/music" component={Music}/>
                     <Route path="/sites" component={Sites}/>

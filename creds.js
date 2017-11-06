@@ -14,5 +14,11 @@ module.exports = {
     "client_secret": process.env.SPOTIFY_CLIENT_SECRET,
     "user_id": process.env.SPOTIFY_USER_ID,
     "playlist_id": process.env.SPOTIFY_PLAYLIST_ID,
+  },
+  "yt": {
+    "key": process.env.YT_KEY,
+    "lists": {
+      "videos": process.env.YT_VIDEO_LIST,
+    }
   }
 }
