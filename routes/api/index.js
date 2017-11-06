@@ -15,9 +15,8 @@ const tmdbRequest = axios.create({
   },
 });
 
-
 const ytRequest = axios.create({
-    baseURL: 'https://www.googleapis.com'
+  baseURL: 'https://www.googleapis.com'
 })
 
 // =============================================================================
@@ -72,6 +71,8 @@ router.get('/show/:id', async ({params: {id}}, res, next) => {
 router.get('/videos', async ({query: {pageToken}}, res, next) => {
   try {
     const {data} = await ytRequest.get(`/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=${credentials.yt.lists.videos}&key=${credentials.yt.key}&pageToken=${pageToken || ''}`);
+
+
     res.send({
         results: data.items,
         prev_page: data.prevPageToken,
@@ -79,6 +80,7 @@ router.get('/videos', async ({query: {pageToken}}, res, next) => {
         total_pages: parseInt(Math.ceil(data.pageInfo.totalResults / data.pageInfo.resultsPerPage), 10),
     });
   } catch (err) {
+    console.log(err);
     next(err);
   }
 });

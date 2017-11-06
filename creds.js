@@ -1,4 +1,5 @@
 module.exports = {
+  "mongo_url": process.env.DM_MONGO_URL,
   "client_email": process.env.CLIENT_EMAIL,
   "private_key": process.env.PRIVATE_KEY,
   "tmdb": {
