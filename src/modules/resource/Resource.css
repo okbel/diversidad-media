@@ -12,8 +12,10 @@
   flex: 1 1 100%;
   margin-bottom: 50px;
   border-radius: 3px;
+  width: 100%;
 
   @media (--desktop) {
+    width: auto;
     padding-right: 20px;
     flex: 1 1 400px;
     &:nth-child(2n) {

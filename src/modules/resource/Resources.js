@@ -9,6 +9,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types';
 import s from './Resources.css';
+import cn from 'classnames';
 
 class Resources extends React.Component {
   state = {
@@ -78,7 +79,7 @@ class Resources extends React.Component {
     }
 
     return (
-      <div className={s.container}>
+      <div className={cn(s.container, s[type])}>
         {resources.map(resource => 
           <Resource 
             type={type}
