@@ -12,14 +12,14 @@ class Resource extends React.Component {
           <TmdbResource
             type={type}
             data={this.props.data}
-            />
+          />
         )
       case 'video':
         return (
           <YtResource
             type={type}
             data={this.props.data}
-            />
+          />
         )
       default:
         console.error(`Unexpected type ${type}`)
@@ -52,11 +52,10 @@ class TmdbResource extends React.Component {
 class YtResource extends React.Component {
   render() {
     const {snippet} = this.props.data;
-    // TODO: create video detail page
     return (
       <a target="_blank" href={`https://youtu.be/${snippet.resourceId.videoId}`} className={s.youtubeContainer}>
         <div className={s.youtube} style={{
-          backgroundImage: `url(${snippet.thumbnails.medium.url})`
+          backgroundImage: `url(${snippet.thumbnails.high.url})`
         }}>
           <div className={s.coverOverlay}></div>
         </div>

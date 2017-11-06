@@ -8,28 +8,26 @@
   position: relative;
 }
 
+.youtubeContainer {
+  flex: 1 1 400px;
+  margin-bottom: 50px;
+  padding-right: 20px;
+  border-radius: 3px;
+
+  &:nth-child(2n) {
+    padding-right: 0;
+  }
+}
+
 .youtube {
   background-color: #65DBC1;
   border-radius: 3px;
   display: inline-block;
   background-size: 100%;
   position: relative;
-  width: 284px;
-  height: 158px;
-}
-
-@media (--desktop) {
-  .youtube {
-    width: 442px;
-    height: 248px;
-  }
-}
-
-@media (--large-desktop) {
-  html .youtube {
-    width: 484px;
-    height: 272px;
-  }
+  width: 100%;
+  min-height: 275px;
+  background-position: 0;
 }
 
 .rating {
@@ -57,11 +55,7 @@
   opacity: 1;
 }
 
-.youtubeContainer {
-  display: inline-block;
-  margin-bottom: 25px;
-  margin-right: 20px;
-}
+
 
 .movieContainer {
   display: inline-block;

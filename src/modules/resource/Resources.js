@@ -8,6 +8,7 @@ import queryString from 'query-string';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types';
+import s from './Resources.css';
 
 class Resources extends React.Component {
   state = {
@@ -56,8 +57,9 @@ class Resources extends React.Component {
   }
 
   renderPaginationOrLoadMore = (type) => {
+    const {nextPage} = this.state;
     if (type === 'video') {
-      return <LoadMore loadMore={this.loadMore} />
+      return nextPage ? <LoadMore loadMore={this.loadMore} /> : null;
     } else {
       return <Paginate 
         pageCount={this.state.totalPages}
@@ -68,7 +70,7 @@ class Resources extends React.Component {
 
   render() {
     const {type} = this.props;
-    const {resources, totalPages} = this.state;
+    const {resources} = this.state;
 
     if (!resources.length){
       return Array(12).fill({}).map((_, i) =>
@@ -76,7 +78,7 @@ class Resources extends React.Component {
     }
 
     return (
-      <div>
+      <div className={s.container}>
         {resources.map(resource => 
           <Resource 
             type={type}

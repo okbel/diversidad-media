@@ -11,6 +11,7 @@
   letter-spacing: 0.2px;
   width: 50%;
   display: block;
+  margin: 0 auto;
 
   &:hover {
     cursor: pointer;
