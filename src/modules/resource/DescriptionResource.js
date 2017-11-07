@@ -14,6 +14,32 @@ class DescriptionResource extends React.Component {
     this.setState({resource});
   }
 
+  render() {
+    const {type} = this.props;
+    switch (type) {
+      case 'show':
+      case 'movie':
+        return (
+          <TmdbDescriptionResource
+            type={type}
+            resource={this.state.resource}
+          />
+        )
+      case 'video':
+        return (
+          <YtDescriptionResource
+            type={type}
+            resource={this.state.resource}
+          />
+        )
+      default:
+        console.error(`Unexpected type ${type}`)
+        return <div></div>
+    }
+  }
+}
+
+class TmdbDescriptionResource extends React.Component {
   renderGenres(genres) {
     return genres.map((gen, i) => {
       return `${gen.name}${genres.length -1 === i ? "" : ", "}`
@@ -32,10 +58,7 @@ class DescriptionResource extends React.Component {
   }
 
   render() {
-    const {type} = this.props;
-    const {resource} = this.state;
-
-
+    const {type, resource} = this.props;
 
     if (!resource) {
       return null;
@@ -65,6 +88,38 @@ class DescriptionResource extends React.Component {
               </ul>
               <p>
                 {resource.overview}
+              </p>
+            </div>
+          </div>
+       </div>
+    );
+  }
+}
+
+class YtDescriptionResource extends React.Component {
+  render() {
+    const {type, resource} = this.props;
+
+    if (!resource) {
+      return null;
+    }
+
+    return (
+      <div>
+        <h2 className={s.title}><Link to={`/${type}s`}>Videos</Link> › {resource.snippet.title}</h2>
+          <div className={s.container + ' ' + s.video}>
+            <div className={s.backdrop} style={{background: "#ccc"}}></div>
+
+            <div className={s.side}>
+                <iframe title="YouTube video player" class="youtube-player" type="text/html" 
+                    src={`http://www.youtube.com/embed/${resource.id}`}
+                    frameborder="0" allowFullScreen className={s.videoThumbnail}></iframe>
+
+            </div>
+            <div className={s.description}>
+              <h2>{resource.snippet.title}</h2>
+              <p>
+                {resource.snippet.description}
               </p>
             </div>
           </div>

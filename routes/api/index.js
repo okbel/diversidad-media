@@ -85,4 +85,13 @@ router.get('/videos', async ({query: {pageToken}}, res, next) => {
   }
 });
 
+router.get('/video/:id', async ({params: {id}}, res, next) => {
+  try {
+    const {data} = await ytRequest.get(`/youtube/v3/videos?part=snippet&id=${id}&key=${credentials.yt.key}`);
+    res.send(data.items[0]);
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;

@@ -43,6 +43,8 @@ class App extends React.Component {
                     <Route path="/show/:id" render={(props) => <DescriptionResource type="show" {...props}/>} />
 
                     <Route path="/videos" component={Videos}/>
+                    <Route path="/video/:id" render={(props) => <DescriptionResource type="video" {...props}/>} />
+
                     <Route path="/books" component={Books}/>
                     <Route path="/music" component={Music}/>
                     <Route path="/sites" component={Sites}/>
