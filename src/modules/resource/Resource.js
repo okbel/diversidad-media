@@ -51,9 +51,10 @@ class TmdbResource extends React.Component {
 
 class YtResource extends React.Component {
   render() {
+    const {type} = this.props;
     const {snippet} = this.props.data;
     return (
-      <a target="_blank" href={`https://youtu.be/${snippet.resourceId.videoId}`} className={s.youtubeContainer}>
+      <Link to={`/${type}/${snippet.resourceId.videoId}`} className={s.youtubeContainer}>
         <div className={s.youtube} style={{
           backgroundImage: `url(${snippet.thumbnails.high.url})`
         }}>
@@ -62,7 +63,7 @@ class YtResource extends React.Component {
         <ul className={s.movieDescription}>
           <li className={s.movieName}>{snippet.title}</li>
         </ul>
-      </a>
+      </Link>
     );
   }
 }
