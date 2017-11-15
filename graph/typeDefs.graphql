@@ -1,25 +1,49 @@
+schema {
+  query: Query
+}
+
+type Query {
+  movies(page: Int): [Movie]
+  shows(page: Int): [Show]
+  book: Book
+}
+
 type Movie {
   id: ID!
   title: String
+  vote_average: Float
+  vote_count: Int
+  video: Boolean
+  media_type: String
+  popularity: Float
+  poster_path: String
+  original_language: String
+  original_title: String
+  genre_ids: [ID]
+  backdrop_path: String
+  adult: Boolean
+  overview: String
+  release_date: String
 }
 
 type Show {
   id: ID!
-  title: String
+  name: String
+  original_name: String
+  media_type: String
+  vote_count: String
+  vote_average: Float
+  poster_path: String
+  first_air_date: String
+  popularity: Float
+  genre_ids: [String]
+  original_language: String
+  backdrop_path: String
+  overview: String
+  origin_country: [String]
 }
 
 type Book {
   id: ID!
   title: String
-}
-
-type RootQuery {
-  test: String
-  movie: Movie
-  show: Show
-  book: Book
-}
-
-schema {
-  query: RootQuery
 }
