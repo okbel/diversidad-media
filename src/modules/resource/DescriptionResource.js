@@ -10,12 +10,27 @@ class DescriptionResource extends React.Component {
 
   async componentWillMount() {
     const id = this.props.match.params.id;
-    const {data:resource} = await axios.get(`/api/${this.props.type}/${id}`);
-    this.setState({resource});
+    try {
+        const {data:resource} = await axios.get(`/api/${this.props.type}/${id}`);
+        this.setState({error: null, resource});
+    } catch (e) {
+        console.error(e);
+        this.setState({error: e});
+    }
   }
 
   render() {
     const {type} = this.props;
+    const {error} = this.state;
+
+    if (error) {
+        return (
+          <div className={s.error}>
+            Hubo un error cargando los datos.
+          </div>
+        )
+    }
+
     switch (type) {
       case 'show':
       case 'movie':
