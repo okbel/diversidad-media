@@ -6,7 +6,7 @@ class UnderConstruction extends React.Component {
   render() {
     return (
       <div className={s.underConstructionContainer}>
-        Auch, esta parte se encuentra en construcción. Lee más sobre esto <Link className={s.link} to="/sobre">acá</Link>. Gracias!
+        Auch, esta parte se encuentra en construcción. Lee más sobre esto <Link className={s.link} to="/about">acá</Link>. Gracias!
       </div>
     );
   }
