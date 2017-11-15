@@ -5,7 +5,7 @@ schema {
 type Query {
   movies(page: Int): [Movie]
   shows(page: Int): [Show]
-  book: Book
+  videos(pageToken: String): VideosPayload
 }
 
 type Movie {
@@ -46,4 +46,49 @@ type Show {
 type Book {
   id: ID!
   title: String
+}
+
+type VideoThumnail {
+  url: String
+  width: Int
+  height: Int
+}
+
+type VideoThumbnails {
+  default: VideoThumnail
+  medium: VideoThumnail
+  high: VideoThumnail
+  standard: VideoThumnail
+  maxres: VideoThumnail
+}
+
+type VideoResourceID {
+  kind: String
+  videoId: ID
+}
+
+type VideoSnippet {
+  publishedAt: String
+  channelId: ID
+  title: String
+  description: String
+  thumbnails: VideoThumbnails
+  channelTitle: String
+  playlistId: ID
+  position: Int
+  resourceId: VideoResourceID
+}
+
+type Video {
+  id: ID!
+  kind: String
+  etag: String
+  snippet: VideoSnippet
+}
+
+type VideosPayload {
+  results: [Video]
+  prev_page: String
+  next_page: String
+  total_pages: Int
 }
