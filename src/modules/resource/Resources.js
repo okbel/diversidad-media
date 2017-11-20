@@ -55,9 +55,10 @@ class Resources extends React.Component {
     }
   }
 
-  pageClick = ({selected}) => {
+  pageClick = async ({selected}) => {
     const page = selected + 1;
-    this.fetchResources({page});
+    await this.fetchResources({page});
+    window.scroll({ top: 0, left: 0, behavior: 'smooth' });
   }
   
   loadMore = () => {
