@@ -1,11 +1,46 @@
+schema {
+  query: Query
+}
+
+type Query {
+  movies(page: Int): [Movie]
+  shows(page: Int): [Show]
+  videos(pageToken: String): VideosPayload
+}
+
 type Movie {
   id: ID!
   title: String
+  vote_average: Float
+  vote_count: Int
+  video: Boolean
+  media_type: String
+  popularity: Float
+  poster_path: String
+  original_language: String
+  original_title: String
+  genre_ids: [ID]
+  backdrop_path: String
+  adult: Boolean
+  overview: String
+  release_date: String
 }
 
 type Show {
   id: ID!
-  title: String
+  name: String
+  original_name: String
+  media_type: String
+  vote_count: String
+  vote_average: Float
+  poster_path: String
+  first_air_date: String
+  popularity: Float
+  genre_ids: [String]
+  original_language: String
+  backdrop_path: String
+  overview: String
+  origin_country: [String]
 }
 
 type Book {
@@ -13,13 +48,47 @@ type Book {
   title: String
 }
 
-type RootQuery {
-  test: String
-  movie: Movie
-  show: Show
-  book: Book
+type VideoThumnail {
+  url: String
+  width: Int
+  height: Int
 }
 
-schema {
-  query: RootQuery
+type VideoThumbnails {
+  default: VideoThumnail
+  medium: VideoThumnail
+  high: VideoThumnail
+  standard: VideoThumnail
+  maxres: VideoThumnail
+}
+
+type VideoResourceID {
+  kind: String
+  videoId: ID
+}
+
+type VideoSnippet {
+  publishedAt: String
+  channelId: ID
+  title: String
+  description: String
+  thumbnails: VideoThumbnails
+  channelTitle: String
+  playlistId: ID
+  position: Int
+  resourceId: VideoResourceID
+}
+
+type Video {
+  id: ID!
+  kind: String
+  etag: String
+  snippet: VideoSnippet
+}
+
+type VideosPayload {
+  results: [Video]
+  prev_page: String
+  next_page: String
+  total_pages: Int
 }

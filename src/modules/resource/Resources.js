@@ -27,17 +27,28 @@ class Resources extends React.Component {
   }
 
   fetchResources = async (query = {}) => {
+      try {
+          await this.doFetchResources(query)
+      } catch (e) {
+          console.error(e);
+          this.setState({error: e})
+      }
+  }
+
+  doFetchResources = async (query = {}) => {
     const {type} = this.props;
     const {data: {results: resources, total_pages, next_page = ""}} = await axios.get(`/api/${type}s?${queryString.stringify(query)}`);
 
     if (type === 'video') {
       this.setState(state => ({
+        error: null,
         resources: [...state.resources, ...resources],
         totalPages: total_pages,
         nextPage: next_page,
       }));
     } else {
       this.setState({
+        error: null,
         resources,
         totalPages: total_pages,
       });
@@ -71,7 +82,15 @@ class Resources extends React.Component {
 
   render() {
     const {type} = this.props;
-    const {resources} = this.state;
+    const {resources, error} = this.state;
+
+    if (error) {
+        return (
+          <div className={s.error}>
+            Hubo un error cargando los datos.
+          </div>
+        )
+    }
 
     if (!resources.length){
       return Array(12).fill({}).map((_, i) =>

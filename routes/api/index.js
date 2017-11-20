@@ -23,7 +23,9 @@ const ytRequest = axios.create({
 // ROUTES
 // =============================================================================
 
-router.get('/movies', async ({query: {page}}, res, next) => {
+router.use('/music', require('./music'));
+
+router.get('/movies', async ({ query: { page } }, res, next) => {
   try {
     const {data} = await tmdbRequest.get(`/4/list/${credentials.tmdb.lists.movies}?api_key=${credentials.tmdb.api_key}&page=${page}`);
     res.send(data);
@@ -32,7 +34,7 @@ router.get('/movies', async ({query: {page}}, res, next) => {
   }
 });
 
-router.get('/shows', async ({query: {page}}, res, next) => {
+router.get('/shows', async ({ query: { page } }, res, next) => {
   try {
     const {data} = await tmdbRequest.get(`/4/list/${credentials.tmdb.lists.shows}?api_key=${credentials.tmdb.api_key}&page=${page}`);
     res.send(data);
@@ -41,7 +43,7 @@ router.get('/shows', async ({query: {page}}, res, next) => {
   }
 });
 
-router.get('/list/:id', async ({params: {id}}, res, next) => {
+router.get('/list/:id', async ({ params: { id } }, res, next) => {
   try {
     const {data} = await tmdbRequest.get(`/4/list/${id}?api_key=${credentials.tmdb.api_key}`);
     res.send(data);
@@ -50,7 +52,7 @@ router.get('/list/:id', async ({params: {id}}, res, next) => {
   }
 });
 
-router.get('/movie/:id', async ({params: {id}}, res, next) => {
+router.get('/movie/:id', async ({ params: { id } }, res, next) => {
   try {
     const {data} = await tmdbRequest.get(`/3/movie/${id}?api_key=${credentials.tmdb.api_key}`);
     res.send(data);
@@ -59,7 +61,7 @@ router.get('/movie/:id', async ({params: {id}}, res, next) => {
   }
 });
 
-router.get('/show/:id', async ({params: {id}}, res, next) => {
+router.get('/show/:id', async ({ params: { id } }, res, next) => {
   try {
     const {data} = await tmdbRequest.get(`/3/tv/${id}?api_key=${credentials.tmdb.api_key}`);
     res.send(data);
@@ -81,6 +83,15 @@ router.get('/videos', async ({query: {pageToken}}, res, next) => {
     });
   } catch (err) {
     console.log(err);
+    next(err);
+  }
+});
+
+router.get('/video/:id', async ({params: {id}}, res, next) => {
+  try {
+    const {data} = await ytRequest.get(`/youtube/v3/videos?part=snippet&id=${id}&key=${credentials.yt.key}`);
+    res.send(data.items[0]);
+  } catch (err) {
     next(err);
   }
 });
