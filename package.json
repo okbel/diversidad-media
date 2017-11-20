@@ -65,8 +65,8 @@
   },
   "scripts": {
     "start": "node server.js",
-    "watch-server": "nodemon server.js",
-    "watch-client": "node scripts/start.js",
+    "watch:server": "nodemon server.js",
+    "watch:client": "node scripts/start.js",
     "build": "node scripts/build.js"
   },
   "proxy": "http://localhost:3000/",

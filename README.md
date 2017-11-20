@@ -35,7 +35,7 @@ By default it listens to port 3000, but you can use another one setting
 the `DM_SERVER_PORT` environment variable.
 
 ```sh
-dotenv yarn watch-server # or dotenv npm run watch-server
+dotenv yarn watch:server # or dotenv npm run watch-server
 ```
 
 ### Client
@@ -45,7 +45,7 @@ By default it listens to port 3001, but you can use another one setting
 the `DM_CLIENT_PORT` environment variable.
 
 ```sh
-yarn watch-client # or dotenv npm run watch-client
+yarn watch:client # or dotenv npm run watch-client
 ```
 
 ## Active Contributors
