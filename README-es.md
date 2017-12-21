@@ -1,4 +1,4 @@
-# Diversidad Media 
+# Diversidad Media
 
 [Inglés](README.md)
 
@@ -52,5 +52,5 @@ yarn watch-client # o dotenv npm run watch-client
 Belén Curcio [@okbel](http://twitter.com/okbel) - Desarrollo Frontend y Backend - Contenido
 
 
-[diversidadmedia.com](diversidadmedia.com)
+[diversidadmedia.com](https://diversidadmedia.com/)
 Diversidad Media 2017
