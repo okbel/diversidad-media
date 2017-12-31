@@ -1,49 +1,47 @@
-const axios = require('axios')
-const credentials = require('../creds.js')
-
-const tmdbRequest = axios.create({
-  baseURL: 'https://api.themoviedb.org',
-  headers: {
-    Authorization: `Bearer ${credentials.tmdb.access_token}`,
-    'Content-Type': `application/json;charset=utf-8`
-  }
-})
-
-const ytRequest = axios.create({
-  baseURL: 'https://www.googleapis.com'
-})
+const axios = require("axios");
+const credentials = require("../creds");
+const tmdb = require("../services/tmdb");
+const yt = require("../services/yt");
 
 module.exports = {
   Query: {
     movies: async (root, { page = 1 }) => {
       try {
-        const { data } = await tmdbRequest.get(
-          `/4/list/${credentials.tmdb.lists.movies}?api_key=${credentials.tmdb
-            .api_key}&page=${page}`
-        )
-        return data.results
+        const { data } = await tmdb.get(
+          `/4/list/${credentials.tmdb.lists.movies}`,
+          {
+            params: {
+              page
+            }
+          }
+        );
+        return data.results;
       } catch (err) {
-        return err
+        return err;
       }
     },
     shows: async (root, { page = 1 }) => {
       try {
-        const { data } = await tmdbRequest.get(
-          `/4/list/${credentials.tmdb.lists.shows}?api_key=${credentials.tmdb
-            .api_key}&page=${page}`
-        )
-        return data.results
+        const { data } = await tmdb.get(
+          `/4/list/${credentials.tmdb.lists.shows}`,
+          {
+            params: {
+              page
+            }
+          }
+        );
+        return data.results;
       } catch (err) {
-        return err
+        return err;
       }
     },
 
-    videos: async (root, { pageToken = '' }) => {
+    videos: async (root, { pageToken = "" }) => {
       try {
-        const { data } = await ytRequest.get(
-          `/youtube/v3/playlistItems?part=snippet&maxResults=10&playlistId=${credentials
-            .yt.lists.videos}&key=${credentials.yt.key}&pageToken=${pageToken}`
-        )
+        const { data } = await yt.get(
+          "/youtube/v3/playlistItems?part=snippet&maxResults=10",
+          { params: { pageToken, playlistId: credentials.yt.lists.videos } }
+        );
         return {
           results: data.items,
           prev_page: data.prevPageToken,
@@ -54,10 +52,10 @@ module.exports = {
             ),
             10
           )
-        }
+        };
       } catch (err) {
-        return err
+        return err;
       }
     }
   }
-}
+};

@@ -1,15 +1,15 @@
+// Ensure environment variables are read.
+require("./config/env");
+
 const express = require("express");
-const bodyParser = require("body-parser");
 const routes = require("./routes");
+const { connect: connectRedis } = require("./services/redis");
 
 const app = express();
 
 // =============================================================================
 // APPLICATION MIDDLEWARE
 // =============================================================================
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -26,4 +26,8 @@ app.use((req, res, next) => {
 
 app.use("/", routes);
 
+// Connect the Redis instances.
+connectRedis();
+
+// Start the express application server.
 app.listen(parseInt(process.env.DM_SERVER_PORT, 10) || 3000);
