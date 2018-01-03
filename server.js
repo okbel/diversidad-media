@@ -1,5 +1,5 @@
 const express = require("express");
-const bodyParser = require("body-parser");
+const logger = require("morgan");
 const routes = require("./routes");
 
 const app = express();
@@ -8,8 +8,10 @@ const app = express();
 // APPLICATION MIDDLEWARE
 // =============================================================================
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(logger("dev"));
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
