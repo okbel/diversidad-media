@@ -117,6 +117,7 @@ Resources.propTypes = {
     'show',
     'movie',
     'video',
+    'music'
   ]),
 };
 

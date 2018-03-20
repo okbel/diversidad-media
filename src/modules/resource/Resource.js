@@ -21,6 +21,13 @@ class Resource extends React.Component {
             data={this.props.data}
           />
         )
+      case 'music':
+        return(
+          <SpotifyResource
+            type={type}
+            data={this.props.data}
+          />
+        )
       default:
         console.error(`Unexpected type ${type}`)
         return <div></div>
@@ -64,6 +71,18 @@ class YtResource extends React.Component {
           <li className={s.movieName}>{snippet.title}</li>
         </ul>
       </Link>
+    );
+  }
+}
+
+class SpotifyResource extends React.Component {
+  render(){
+    const snippet = this.props.data;
+    const url = `https://open.spotify.com/embed?uri=spotify:track:${snippet.track.id}`
+    return (
+      <div className={s.spotify}>
+        <iframe src={url} title={snippet.track.id} frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+      </div>
     );
   }
 }

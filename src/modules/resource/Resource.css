@@ -8,6 +8,17 @@
   position: relative;
 }
 
+.spotify {
+  position: relative;
+  display: inline-block;
+}
+
+.spotify iframe {
+  width: 240px;
+  height: 320px;
+  padding: 5px;
+}
+
 .youtubeContainer {
   flex: 1 1 100%;
   margin-bottom: 50px;
@@ -61,8 +72,6 @@
   opacity: 1;
 }
 
-
-
 .movieContainer {
   display: inline-block;
   margin-left: -1px;
@@ -80,7 +89,6 @@ a.movieContainer:nth-child(2n){
     margin-right: 20px;
   }
 }
-
 
 @media (--desktop) {
   a.movieContainer:nth-child(5n){

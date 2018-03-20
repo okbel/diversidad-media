@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './Music.css';
-import UnderConstruction from '../../components/UnderConstruction';
+import Resources from '../../modules/resource/Resources';
 
 class Music extends React.Component {
   render() {
@@ -8,7 +8,9 @@ class Music extends React.Component {
       <div>
         <h2 className={s.title}>Musica</h2>
         <div>
-          <UnderConstruction />
+          <Resources
+            type="music"
+          />
         </div>
       </div>
     );
