@@ -24,7 +24,7 @@ const ytRequest = axios.create({
 // ROUTES
 // =============================================================================
 
-router.use('/music', require('./music'));
+router.use('/musics', require('./music'));
 
 router.get('/movies', async ({ query: { page } }, res, next) => {
   try {

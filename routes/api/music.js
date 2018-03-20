@@ -70,9 +70,14 @@ instance.interceptors.request.use(async (config) => {
 
 router.get('/', async ({ query: { page } }, res, next) => {
   try {
-    console.log('Calling music')
-    const { data: { items: results, limit, total } } = await instance.get(`/v1/users/${credentials.spotify.user_id}/playlists/${credentials.spotify.playlist_id}/tracks?fields=limit,total,items.track(id,album(images,id,name),artists(id,name),name,popularity)&limit=20&offset=${page}`);
+    const offset = (page == null)? '&offset=0' : `&offset=${(page - 1) * 20}`
+    const { data: { items: results, limit, total } } = await instance.get(`/v1/users/${credentials.spotify.user_id}/playlists/${credentials.spotify.playlist_id}/tracks?fields=limit,total,items.track(id,album(images,id,name),artists(id,name),name,popularity)&limit=20` + offset);
     const total_pages = Math.ceil(total / limit);
+
+    results.map(result => {
+      result.id = result.track.id;
+      return result;
+    });
 
     res.send({ results, total_pages });
   } catch (err) {
