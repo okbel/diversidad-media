@@ -29,5 +29,10 @@ app.use("/", routes);
 // Connect the Redis instances.
 connectRedis();
 
+// Parse the port from the environment.
+const port = parseInt(process.env.DM_SERVER_PORT, 10) || 3000;
+
 // Start the express application server.
-app.listen(parseInt(process.env.DM_SERVER_PORT, 10) || 3000);
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
+});
