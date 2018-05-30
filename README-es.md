@@ -2,7 +2,9 @@
 
 [Inglés](README.md)
 
-Diversidad Media es una plataforma para generar espacios más diversos, ya sea mediante Películas, Libros, Musica, entre otros. El proyecto está en rápido crecimiento y hay muchas cosas por hacer. Estamos cubriendo lo básico todavia.
+Diversidad Media es una plataforma para generar espacios más diversos, ya sea
+mediante Películas, Libros, Musica, entre otros. El proyecto está en rápido
+crecimiento y hay muchas cosas por hacer. Estamos cubriendo lo básico todavia.
 
 Acá podés encontrar más información:
 https://medium.com/@okbel/diversidad-media-e0783f3e20de
@@ -12,15 +14,14 @@ https://medium.com/@okbel/diversidad-media-e0783f3e20de
 ### Prerequisitos
 
 * [Yarn](https://yarnpkg.com/en/) (recomendado)
-* [dotenv](https://github.com/bkeepers/dotenv) (recomendado)
-* [nodemon](https://github.com/remy/nodemon)
 * [TMDB key](https://developers.themoviedb.org/3/getting-started)
 * [Google Books API key](https://developers.google.com/books/)
 * [Youtube API key](https://console.cloud.google.com/apis/credentials)
+* [Redis](https://redis.io/)
 
 ### Configuración
 
-Crear un archivo `.env` con tus claves, siguiendo el formato de  `.env.example`.
+Crear un archivo `.env` con tus claves, siguiendo el formato de `.env.example`.
 
 ### Instalar dependencias
 
@@ -49,8 +50,8 @@ yarn watch-client # o dotenv npm run watch-client
 ```
 
 ## Active Contributors
-Belén Curcio [@okbel](http://twitter.com/okbel) - Desarrollo Frontend y Backend - Contenido
 
+Belén Curcio [@okbel](http://twitter.com/okbel) - Desarrollo Frontend y
+Backend - Contenido
 
-[diversidadmedia.com](https://diversidadmedia.com/)
-Diversidad Media 2017
+[diversidadmedia.com](https://diversidadmedia.com/) Diversidad Media 2017
