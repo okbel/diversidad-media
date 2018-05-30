@@ -13,6 +13,7 @@
   flex: 0;
   padding: 30px;
   overflow: hidden;
+  min-width: 364px;
 }
 
 .container .description {
