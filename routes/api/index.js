@@ -1,9 +1,9 @@
 const express = require("express");
-const axios = require("axios");
 const credentials = require("../../creds");
 const tmdb = require("../../services/tmdb");
 const yt = require("../../services/yt");
-
+const MovieService = require("../../services/movies");
+const debug = require("debug")("tundra:routes");
 const router = express.Router();
 
 // =============================================================================

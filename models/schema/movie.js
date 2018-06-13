@@ -14,31 +14,42 @@ const Movie = new Schema(
     },
     title: {
       type: String,
-      required: true,
-      unique: true
+      required: true
     },
-    description: {
+    overview: {
       type: String,
-      required: true,
-      unique: true
+      required: true
     },
     vote_average: {
       type: String,
-      required: true,
-      unique: true
+      required: true
     },
     vote_count: {
       type: String,
-      required: true,
-      unique: true
+      required: true
     },
     poster_path: {
       type: String,
-      required: true,
-      unique: true
+      required: true
     },
-    genre_ids: [GENRES],
+    backdrop_path: {
+      type: String,
+      required: true
+    },
+    original_language: {
+      type: String,
+      required: true
+    },
+    original_title: {
+      type: String,
+      required: true
+    },
+    genres: [GENRES],
     release_date: {
+      type: String,
+      required: true
+    },
+    tmdb_id: {
       type: String,
       required: true,
       unique: true
