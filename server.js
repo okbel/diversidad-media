@@ -6,6 +6,8 @@ const logger = require("morgan");
 const routes = require("./routes");
 const { connect: connectRedis } = require("./services/redis");
 
+require("./services/mongoose");
+
 const app = express();
 
 // =============================================================================

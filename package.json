@@ -41,8 +41,9 @@
     "html-webpack-plugin": "2.29.0",
     "ioredis": "^3.2.2",
     "jest": "20.0.4",
-    "ms": "^2.1.1",
+    "mongoose": "^5.1.5",
     "morgan": "^1.9.0",
+    "ms": "^2.1.1",
     "object-assign": "4.1.1",
     "postcss-custom-media": "^6.0.0",
     "postcss-flexbugs-fixes": "3.2.0",
@@ -66,6 +67,7 @@
     "style-loader": "0.18.2",
     "sw-precache-webpack-plugin": "0.11.4",
     "url-loader": "0.5.9",
+    "uuid": "^3.2.1",
     "webpack": "3.5.1",
     "webpack-dev-server": "2.8.2",
     "webpack-manifest-plugin": "1.2.1",
@@ -79,7 +81,9 @@
   },
   "proxy": "http://localhost:3000/",
   "babel": {
-    "presets": ["react-app"]
+    "presets": [
+      "react-app"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"
