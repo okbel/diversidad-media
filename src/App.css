@@ -5,17 +5,9 @@
   min-height: 100vh;
   flex-direction: column;
   letter-spacing: 0.1px;
-  padding: 0 30px;
-}
+  padding: 20px 30px 0;
 
-@media (--phone) {
-  .container {
-    padding: 0 20px;
-  }
-}
-
-@media (--large-desktop) {
-  .container {
+  @media (--large-desktop) {
     padding: 0px;
   }
 }
@@ -23,4 +15,30 @@
 .content {
   flex: 1;
   padding: 30px 0;
+}
+
+.banner {
+  font-size: 0.8em;
+  padding: 5px 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #61c482;
+  text-align: center;
+  color: white;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: hsla(0,0%,100%,.90);
+  width: 100%;
+
+  @media (--desktop) {
+    font-size: 1em;
+  }
+}
+
+.banner .link {
+  color: white;
+  text-decoration: underline;
+  display: inline-block;
+  margin-left: 4px;
 }

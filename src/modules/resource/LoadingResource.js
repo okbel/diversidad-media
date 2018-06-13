@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './LoadingMovie.css';
+import s from './LoadingResource.css';
 
 class Movie extends React.Component {
   render() {
@@ -8,8 +8,7 @@ class Movie extends React.Component {
     return (
       <div className={s.loadingMovie} style={{
         animationDelay: `${delay}s`
-      }}>
-      </div>
+      }}/>
     );
   }
 }

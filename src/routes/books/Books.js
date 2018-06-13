@@ -1,8 +1,9 @@
 import React from 'react';
 import s from './Books.css';
 import UnderConstruction from '../../components/UnderConstruction';
+import withQuery from 'hocs/withQuery';
 
-class Movies extends React.Component {
+class Books extends React.Component {
   render() {
     return (
       <div>
@@ -15,4 +16,8 @@ class Movies extends React.Component {
   }
 }
 
-export default Movies;
+export default withQuery(`
+  query Books {
+    test
+  }
+`)(Books);

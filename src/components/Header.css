@@ -9,8 +9,9 @@
 
 .header .menu {
   flex: 1;
-  margin-left: 50px;
   text-align: right;
+  display: inline-flex;
+  flex-direction: row-reverse;
 }
 
 .menuList {
@@ -61,22 +62,6 @@
   flex-direction: column;
   justify-content: space-around;
   padding: 50px 0;
-} 
-
-@media (--desktop) {
-  .menuIcon {
-    display: none;
-  }
-  .menuList {
-    display: block;
-    position: static;
-    background-color: transparent;
-  }
-  .menuItem {
-    display: inline-block;
-    padding: 0px;
-    font-size: 1em;
-  }
 }
 
 .icon {
@@ -113,4 +98,44 @@
 
 .menuItem:nth-child(7) .menuItemLink:hover, .menuItem:nth-child(7) .menuItemLink.selected {
   border-bottom: 1px solid violet;
+}
+
+.add {
+  border-radius: 3px;
+  padding: 5px 15px;
+  color: white;
+  background-color: #714bca;
+  text-align: center;
+  display: inline-block;
+  margin-right: 25px;
+  font-size: 0.9em;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+@media (--desktop) {
+  .menuIcon {
+    display: none;
+  }
+  .menuList {
+    display: inline;
+    position: static;
+    background-color: transparent;
+  }
+  .menuItem {
+    display: inline-block;
+    padding: 0px;
+    font-size: 1em;
+  }
+  .header .menu {
+    display: block
+  }
+  .add {
+    margin-right: 0px;
+    margin-left: 25px;
+  }
 }

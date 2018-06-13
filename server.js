@@ -1,106 +1,54 @@
-const express = require('express');
-const google = require('googleapis');
-const bodyParser = require('body-parser');
-const axios = require('axios');
+// Ensure environment variables are read.
+require("./config/env");
 
-const credentials = require('./creds.js');
+const express = require("express");
+const logger = require("morgan");
+const routes = require("./routes");
+const { connect: connectRedis } = require("./services/redis");
+
+require("./services/mongoose");
 
 const app = express();
 
 // special case public URLs that are equivalent
 // as visting the root (similar to `200.html` on github)
-app.get('/peliculas/:id', (req, res, next) => {
+app.get('/movie/:id', (req, res, next) => {
   req.url = '/';
   next();
 });
 
-app.use(express.static('build'));
+// =============================================================================
+// APPLICATION MIDDLEWARE
+// =============================================================================
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(logger("dev"));
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// TODO: remove full CORS support.
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
   next();
 });
 
-const auth = new google.auth.JWT(
-  credentials.client_email,
-  null,
-  credentials.private_key,
-  ['https://www.googleapis.com/auth/spreadsheets'],
-  null
-);
+// =============================================================================
+// ROUTES
+// =============================================================================
 
-google.options({auth});
+app.use("/", routes);
 
-const sheets = google.sheets('v4');
-const spreadsheetId = '18Q3kTrNtTYUyscylEly5mMms_n9g_sj0IPdAnn-9EME';
+// Connect the Redis instances.
+connectRedis();
 
-const getMoviesIds = (req, res) => {
-  return new Promise((resolve, reject) => {
-    sheets.spreadsheets.values.get({
-      spreadsheetId,
-      range: 'diversidadmedia!B7:B'
-    }, (err, response) => {
-      resolve(response.values[0]);
-    });
-  });
-}
+// Parse the port from the environment.
+const port = parseInt(process.env.DM_SERVER_PORT, 10) || 3000;
 
-const request = axios.create({
-  baseURL: 'https://api.themoviedb.org'
+// Start the express application server.
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
 });
-
-request.defaults.headers.common['Authorization'] = `Bearer ${credentials.tmdb.access_token}`;
-request.defaults.headers.common['Content-Type'] = `application/json;charset=utf-8`;
-
-app.get('/update', async (req, res, next) => {
-  try {
-    const ids = await getMoviesIds();
-
-    ids.map(async (id) => {
-      try {
-        await request.post(`/3/list/${credentials.tmdb.list}/add_item?api_key=${credentials.tmdb.api_key}`, {
-          media_id: id
-        }); 
-      } catch (err) {
-        return next(err);
-      }
-    })
-
-    res.sendStatus(200);
-  } catch (err) {
-    next(err);
-  }
-})
-
-app.get('/movies', async ({query: {page}}, res, next) => {
-  try {
-    const {data} = await request.get(`/4/list/${credentials.tmdb.list}?api_key=${credentials.tmdb.api_key}&page=${page}`);
-    res.send(data);
-  } catch (err) {
-    next(err);
-  }
-});
-
-app.get('/list/:id', async ({params: {id}}, res, next) => {
-  try {
-    const {data} = await request.get(`/4/list/${id}?api_key=${credentials.tmdb.api_key}`);
-    res.send(data);
-  } catch (err) {
-    next(err);
-  }
-});
-
-app.get('/movie/:id', async ({params: {id}}, res, next) => {
-  try {
-    const {data} = await request.get(`/3/movie/${id}?api_key=${credentials.tmdb.api_key}`);
-    res.send(data);
-  } catch (err) {
-    next(err);
-  }
-});
-
-app.listen(3000);

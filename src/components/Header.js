@@ -4,13 +4,38 @@ import {NavLink} from 'react-router-dom';
 import cn from 'classnames';
 
 const menuItems = [
-  'Peliculas',
-  'Series',
-  'Libros',
-  'Musica',
-  'Sitios',
-  'Otros',
-  'Sobre',
+  {
+    name: 'Peliculas',
+    path: 'movies',
+  },
+  {
+    name: 'Series',
+    path: 'shows',
+  },
+  {
+    name: 'Videos',
+    path: 'videos',
+  },
+  {
+    name: 'Libros',
+    path: 'books',
+  },
+  {
+    name: 'Musica',
+    path: 'music',
+  },
+  {
+    name: 'Sitios',
+    path: 'sites',
+  },
+  {
+    name: 'Otros',
+    path: 'other',
+  },
+  {
+    name: 'Sobre',
+    path: 'about',
+  },
 ];
 
 class Header extends React.Component {
@@ -75,14 +100,17 @@ class Header extends React.Component {
           {menuItems.map((item, i) => 
             <li key={i} className={s.menuItem} onClick={this.closeMenu}>
               <NavLink
-                to={`/${item.toLowerCase()}`}
+                to={`/${item.path}`}
                 className={s.menuItemLink}
                 activeClassName={s.selected}>
-                {item}
+                {item.name}
               </NavLink>
             </li>
           )}
         </ul>
+        <a href="https://goo.gl/forms/6F4qyjasOvVXoqzd2" target="_blank" rel="noopener noreferrer" className={s.add}>
+          Agregá tu recurso
+        </a>      
       </nav>    
     </header>
     );
