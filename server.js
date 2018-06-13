@@ -10,6 +10,13 @@ require("./services/mongoose");
 
 const app = express();
 
+// special case public URLs that are equivalent
+// as visting the root (similar to `200.html` on github)
+app.get('/movie/:id', (req, res, next) => {
+  req.url = '/';
+  next();
+});
+
 // =============================================================================
 // APPLICATION MIDDLEWARE
 // =============================================================================
