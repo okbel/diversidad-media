@@ -21,18 +21,6 @@ const menuItems = [
     path: "books"
   },
   {
-    name: "Musica",
-    path: "music"
-  },
-  {
-    name: "Sitios",
-    path: "sites"
-  },
-  {
-    name: "Otros",
-    path: "other"
-  },
-  {
     name: "Sobre",
     path: "about"
   }
@@ -277,12 +265,21 @@ class Header extends React.Component {
             href="https://goo.gl/forms/6F4qyjasOvVXoqzd2"
             target="_blank"
             rel="noopener noreferrer"
-            className={s.add}
+            className={cn(s.btn, s.violet)}
           >
             Agregá tu recurso
           </a>
-          <a className={s.add}>Comunidad DM</a>
-          <NavLink to={`/slack`}>Slack</NavLink>
+          <a
+            className={s.btn}
+            href="http://comunidad.diversidadmedia.com"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Comunidad DM
+          </a>
+          <NavLink className={s.btn} to={`/slack`}>
+            Unite a Slack
+          </NavLink>
         </nav>
       </header>
     );

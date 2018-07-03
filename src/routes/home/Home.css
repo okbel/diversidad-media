@@ -2,14 +2,18 @@
   margin-bottom: 10px;
 }
 
-.list {
-  padding: 20px;
-}
-
 .description {
   padding: 20px 0;
 }
 
 .link {
   color: #EB5242;
+}
+
+.separator {
+	margin: 20px 0;
+
+	&.separator {
+		margin-left: 20px;
+	}
 }

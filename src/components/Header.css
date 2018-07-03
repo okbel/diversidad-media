@@ -28,7 +28,7 @@
   right: 0;
   bottom: 0;
   height: 100%;
-  background-color: white; 
+  background-color: white;
 }
 
 .menuItem {
@@ -89,7 +89,7 @@
 }
 
 .menuItem:nth-child(5) .menuItemLink:hover, .menuItem:nth-child(5) .menuItemLink.selected {
-  border-bottom: 1px solid #EB7835; 
+  border-bottom: 1px solid #EB7835;
 }
 
 .menuItem:nth-child(6) .menuItemLink:hover, .menuItem:nth-child(6) .menuItemLink.selected {
@@ -139,3 +139,27 @@
     margin-left: 25px;
   }
 }
+
+.btn {
+	background-color: #f1f5fa;
+	border: 1px solid #f1f5fa;
+	border-radius: 8px;
+	margin: 0 8px;
+	transition: 0.2s ease-in-out;
+	color: #4a4a4a;
+	font-size: 1em;
+	padding: 6px 10px;
+	font-weight: bold;
+	cursor: pointer;
+
+	&:last-child {
+		margin-right: 0;
+	}
+
+	&.violet {
+		background-color: #714bca;
+		border-color: #714bca;
+		color: white;
+	}
+}
+
