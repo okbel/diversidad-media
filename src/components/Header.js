@@ -260,26 +260,32 @@ class Header extends React.Component {
                 </NavLink>
               </li>
             ))}
+            <li className={s.menuItemLink}>
+              <a
+                href="https://goo.gl/forms/6F4qyjasOvVXoqzd2"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(s.btn, s.violet)}
+              >
+                Agregá tu recurso
+              </a>
+            </li>
+            <li className={s.menuItemLink}>
+              <a
+                className={s.btn}
+                href="http://comunidad.diversidadmedia.com"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Comunidad DM
+              </a>
+            </li>
+            <li className={s.menuItemLink} onClick={this.closeMenu}>
+              <NavLink className={s.btn} to={`/slack`}>
+                Unite a Slack
+              </NavLink>
+            </li>
           </ul>
-          <a
-            href="https://goo.gl/forms/6F4qyjasOvVXoqzd2"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={cn(s.btn, s.violet)}
-          >
-            Agregá tu recurso
-          </a>
-          <a
-            className={s.btn}
-            href="http://comunidad.diversidadmedia.com"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Comunidad DM
-          </a>
-          <NavLink className={s.btn} to={`/slack`}>
-            Unite a Slack
-          </NavLink>
         </nav>
       </header>
     );
