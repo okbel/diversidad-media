@@ -1,0 +1,91 @@
+.message {
+	background-color: transparent;
+	color: #4462c9;
+	border: 1px solid #4462c9;
+	padding: 15px;
+	margin: 5px 0;
+	border-radius: 3px;
+	display: inline-block;
+	margin: 20px auto;
+}
+
+.error {
+	background-color: transparent;
+	color: #c94644;
+	border: 1px solid #c94644;
+	padding: 15px;
+	margin: 5px 0;
+	border-radius: 3px;
+	display: inline-block;
+	margin: 20px auto;
+}
+
+.label {
+	color: #4a4a4a;
+	font-weight: bold;
+	letter-spacing: 0.5px;
+}
+
+.formField {
+	display: block;
+	margin: 20px auto;
+}
+
+.title {
+	color: #4a4a4a;
+	font-size: 30px;
+	letter-spacing: 0em;
+	line-height: 50px;
+}
+
+.button {
+	border: none;
+	border-radius: 6px;
+	color: #f8fafc;
+	font-size: 13px;
+	letter-spacing: 0.07em;
+	text-align: center;
+	text-transform: uppercase;
+	transition: 0.3s ease-in-out;
+	outline: none;
+	padding: 14px 30px;
+	background-color: #4462c9;
+	font-weight: bold;
+	cursor: pointer;
+
+	&:hover {
+		background-color: #344b9a;
+	}
+
+	&:focus {
+		background-color: #4666d4;
+	}
+
+	&:disabled {
+		background-color: #4f566d;
+	}
+
+}
+
+.input {
+	border: 1px solid #cecece;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	color: #4a4a4a;
+	height: 50px;
+	line-height: 20px;
+	margin: 5px auto;
+	max-width: 100%;
+	padding: 15px;
+	width: 100%;
+	display: inline-block;
+	font-size: 14px;
+}
+
+.loading {
+	width: 20px;
+	height: 20px;
+	margin-left: 10px;
+	vertical-align: middle;
+}

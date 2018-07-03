@@ -1,33 +1,14 @@
 const request = require("superagent");
-const { EventEmitter } = require("events");
 
-class Slack extends EventEmitter {
+class Slack {
   constructor({ token, interval, org: host }) {
-    super();
     this.host = host;
     this.token = token;
-    this.interval = interval;
-    this.ready = false;
     this.org = {};
-    this.users = {};
-    this.channelsByName = {};
     this.init();
-    this.fetch();
   }
 
   init() {
-    request
-      .get(`https://${this.host}.slack.com/api/channels.list`)
-      .query({ token: this.token })
-      .end((err, res) => {
-        if (err) {
-          throw err;
-        }
-        (res.body.channels || []).forEach(channel => {
-          this.channelsByName[channel.name] = channel;
-        });
-      });
-
     request
       .get(`https://${this.host}.slack.com/api/team.info`)
       .query({ token: this.token })
@@ -43,69 +24,53 @@ class Slack extends EventEmitter {
       });
   }
 
-  fetch() {
-    request
-      .get(`https://${this.host}.slack.com/api/users.list`)
-      .query({ token: this.token, presence: 1 })
-      .end((err, res) => {
-        this.onres(err, res);
-      });
-    this.emit("fetch");
-  }
+  invite({ email, channel }) {
+    const token = this.token;
+    const org = this.host;
 
-  getChannelId(name) {
-    let channel = this.channelsByName[name];
-    return channel ? channel.id : null;
-  }
+    let data = { email, token };
 
-  retry() {
-    let interval = this.interval * 2;
-    setTimeout(this.fetch.bind(this), interval);
-    this.emit("retry");
-  }
-
-  onres(err, res) {
-    if (err) {
-      this.emit("error", err);
-      return this.retry();
+    if (channel) {
+      data.channels = channel;
+      data.ultra_restricted = 1;
+      data.set_active = true;
     }
 
-    let users = res.body.members;
+    return new Promise((resolve, reject) => {
+      request
+        .post(`https://${org}.slack.com/api/users.admin.invite`)
+        .type("form")
+        .send(data)
+        .end(function(err, res) {
+          if (err) return reject(err);
 
-    if (!users || (users && !users.length)) {
-      let err = new Error(`Invalid Slack response: ${res.status}`);
-      this.emit("error", err);
-      return this.retry();
-    }
+          if (200 !== res.status) {
+            reject(`Respuesta inválida ${res.status}.`);
+            return;
+          }
 
-    users = users.filter(x => {
-      return x.id !== "USLACKBOT" && !x.is_bot && !x.deleted;
+          let { ok, error: providedError, needed } = res.body;
+
+          if (!ok) {
+            if (providedError === "missing_scope" && needed === "admin") {
+              reject(`Sin permisos de admin`);
+            } else if (providedError === "already_invited") {
+              reject(
+                "Ya fuiste invitado a Slack. Fijate si tenés un email de feedback@slack.com."
+              );
+            } else if (providedError === "already_in_team") {
+              reject(`Ya estás en el equipo`);
+            } else if (providedError === "invalid_email") {
+              reject("El email ingresado es inválido");
+            } else {
+              reject(providedError);
+            }
+            return;
+          }
+
+          resolve();
+        });
     });
-
-    let total = users.length;
-    let active = users.filter(user => {
-      return "active" === user.presence;
-    }).length;
-
-    if (this.users) {
-      if (total !== this.users.total) {
-        this.emit("change", "total", total);
-      }
-      if (active != this.users.active) {
-        this.emit("change", "active", active);
-      }
-    }
-
-    this.users.total = total;
-    this.users.active = active;
-
-    if (!this.ready) {
-      this.ready = true;
-      this.emit("ready");
-    }
-
-    setTimeout(this.fetch.bind(this), this.interval);
-    this.emit("data");
   }
 }
 

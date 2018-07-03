@@ -3,6 +3,7 @@ require("./config/env");
 
 const express = require("express");
 const logger = require("morgan");
+const nunjucks = require("nunjucks");
 const routes = require("./routes");
 const { connect: connectRedis } = require("./services/redis");
 
@@ -10,10 +11,13 @@ require("./services/mongoose");
 
 const app = express();
 
+// configuring nunjucks
+nunjucks.configure("views", { autoescape: true, express: app });
+
 // special case public URLs that are equivalent
 // as visting the root (similar to `200.html` on github)
-app.get('/movie/:id', (req, res, next) => {
-  req.url = '/';
+app.get("/movie/:id", (req, res, next) => {
+  req.url = "/";
   next();
 });
 
