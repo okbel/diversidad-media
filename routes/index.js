@@ -13,10 +13,11 @@ const router = express.Router();
 router.use(shrinkRay());
 
 // =============================================================================
-// UPDATE UTILITIES
+// UTILITIES
 // =============================================================================
 
 router.use("/update", require("./update"));
+router.use("/slack", require("./slack"));
 
 // =============================================================================
 // GRAPHQL ROUTER
